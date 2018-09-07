@@ -2,7 +2,7 @@
 from dk.collections import pset
 import re
 import json
-from dkjs import jason
+# from dkjs import jason
 from dateutil import parser
 
 
@@ -30,7 +30,8 @@ class ISO8601Decoder(json.JSONDecoder):
 
         if len(val) < 35 and ISO8601Decoder.MAYBE_DATE.match(val) is not None:
             try:
-                # XXX: MySQL backend does not support timezone-aware datetimes when USE_TZ is False.
+                # XXX: MySQL backend does not support timezone-aware datetimes
+                # when USE_TZ is False.
                 return parser.parse(val).replace(tzinfo=None)
             except ValueError:
                 pass
@@ -42,9 +43,9 @@ class ISO8601Decoder(json.JSONDecoder):
         return val
 
     def objhook(self, attrs):
-        #return {k: self.convert(v) for k, v in attrs}
+        # return {k: self.convert(v) for k, v in attrs}
         return pset((k, self.convert(v)) for k, v in attrs)
 
-
-def loads(txt):
-    return jason.loads(txt, cls=ISO8601Decoder)
+#
+# def loads(txt):
+#     return jason.loads(txt, cls=ISO8601Decoder)

@@ -1,0 +1,24 @@
+---
+api:
+  metadata:
+    name: toolcall
+    url: /.api/toolcall/v2/
+    active: true
+    version: 2
+
+  urls:
+    root-url: https://afr.norsktest.no/toolcall/
+
+    start_data:
+      url: fetch-token/
+      description: >
+        The client should send the initial token back to this url.
+        The response will be a json dict containing data to start the test/tool.
+    result_token:
+      url: result/
+      description: >
+        The server returns the result token to this url and expects to receive
+        result data back.
+    debug:
+      create_token:
+        url: create-token/

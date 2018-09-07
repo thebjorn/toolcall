@@ -4,16 +4,17 @@
 """
 
 from django.conf.urls import *  # pylint:disable=W0401
+from . import views
 
-urlpatterns = patterns(
-    'toolcall',
 
-    # (r'^$', 'views.plugin_definition'),
-    (r'^assessment-begin/$', 'views.assessment_begin'),
-    (r'^result/$', 'views.receive_result'),
-    (r'^fetch-token/$', 'views.fetch_token'),      # person
+urlpatterns = [
+
+    url(r'^.api/toolcall/v2/$', views.plugin_definition),
+    # url(r'^assessment-begin/$', views.assessment_begin),
+    # url(r'^result/$', views.receive_result),
+    # url(r'^fetch-token/$', views.fetch_token),      # person
 
     # debug view
-    (r'^create-token/$', 'views.create_token'),  # start-assessment
+    url(r'^create-token/$', views.create_token),  # start-assessment
 
-)
+]

@@ -1,10 +1,44 @@
 # -*- coding: utf-8 -*-
-# from django.contrib.auth.models import User
-# from toolcall import conf
-#
-# from django.db import models
-# from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.db import models
+from django.contrib.auth.models import User, Permission
+
+
 # from dkexam.models import Result, Assessment
+
+
+class Client(models.Model):
+    """An API client.
+    """
+    name = models.CharField(max_length=100)
+
+    client_secret = models.CharField(
+        max_length=255,
+        help_text="We sign transmissions using this as key to "
+                  "``django.core.signing.Signer``.")
+
+    receive_start_token_url = models.CharField(
+        max_length=255,
+        help_text="Url where we redirect the end user with a token.")
+    receive_start_data_url = models.CharField(
+        max_length=255,
+        help_text="Url where we send start data for user.")
+    receive_result_token_url = models.CharField(
+        max_length=255,
+        help_text="Url where we return the result token and expect result "
+                  "data in return")
+
+    class Meta:
+        permissions = [
+            ("client_admin", "Can administrate toolcall client(s).")
+        ]
+
+    @classmethod
+    def make_client_admin(cls, usr):
+        content_type = ContentType.objects.get_for_model(Client)
+        permission = Permission.objects.get(content_type=content_type,
+                                            codename='client_admin')
+        usr.user_permissions.add(permission)
 
 
 # class ToolcallAssessments(models.Model):

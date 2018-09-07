@@ -2,10 +2,10 @@
 import pprint
 import uuid
 import datetime
-from dkdjango import dkhttp
-from toolcall.defaults import TOOLCALL_RENEW_TOKEN_URL
+# from dkdjango import dkhttp
+from .defaults import TOOLCALL_RENEW_TOKEN_URL
 from django import http
-from dkjs import jason
+# from dkjs import jason
 import re
 
 
