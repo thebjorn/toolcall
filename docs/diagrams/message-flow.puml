@@ -1,0 +1,5 @@
+@startuml
+sender --> receiver : send unique-token
+receiver --> sender : return unique-token
+sender -> receiver : send data (+ token)
+@enduml

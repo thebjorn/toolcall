@@ -43,6 +43,9 @@ from dktasklib.package import Package, package
 from dktasklib.watch import Watcher
 # from dktasklib.publish import publish
 
+# from http://plantuml.com
+PLANTUML_JAR = r'c:\bin\plantuml.jar'
+
 #: where tasks.py is located (root of package)
 DIRNAME = Path(os.path.dirname(__file__))
 
@@ -116,7 +119,17 @@ def build(ctx, less=False, docs=False, js=False, force=False):
                 "your package. Since it runs in a separate process you cannot"
                 "use settings.configure()"
             )
-        doctools.build(ctx, force=force)
+        for fname in ctx.pkg.docs.glob('diagrams/*.puml'):
+            ctx.run('java -jar %s %s -tsvg -o %s' % (
+                PLANTUML_JAR, fname, ctx.pkg.docs / '_static'
+            ))
+        for fname in ctx.pkg.docs.glob('diagrams/*.dot'):
+            ctx.run('dot -Tsvg -o %s %s' % (
+                ctx.pkg.docs / '_static' / fname.basename().switchext('.svg'),
+                fname
+            ))
+
+        # doctools.build(ctx, force=force)
 
     if buildall or js:
         build_js(ctx, force)

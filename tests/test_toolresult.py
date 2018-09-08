@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from toolcall.dkpluginbase import Message
+from toolcall.message import Message
 from dkjs import jason
 from toolcall.toolcallexceptions import ToolcallException, ToolcallJSonDecodeError, ToolcallResultException, ToolcallMessageException
 import pytest

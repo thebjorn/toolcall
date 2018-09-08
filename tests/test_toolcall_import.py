@@ -29,6 +29,6 @@ def test_import_():
     assert toolcall.toolcall_exceptions
     assert toolcall.toolresult
     assert toolcall.jsondecoder
-    assert toolcall.models
+    assert toolcall.models.models
     assert toolcall.urls
     assert toolcall.views

@@ -9,7 +9,7 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^.api/toolcall/v2/$', views.plugin_definition),
+    url(r'^.api/toolcall/v2/$', views.api_definition),
     # url(r'^assessment-begin/$', views.assessment_begin),
     # url(r'^result/$', views.receive_result),
     # url(r'^fetch-token/$', views.fetch_token),      # person

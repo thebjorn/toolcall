@@ -98,6 +98,7 @@ class Token(object):
     def __eq__(self, other):
         return self.token == other.token
 
+
     @property
     def valid(self):
         """Property returning `True` or `False` after calling `validate()`.

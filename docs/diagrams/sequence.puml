@@ -1,0 +1,9 @@
+@startuml
+server -> server : started
+server --> client : start-tk-sent
+client --> server : start-tk-received
+server -> client : start-data-sent
+client --> server : result-tk-received
+server --> client : result-tk-sent
+client -> server : result-received-ok
+@enduml

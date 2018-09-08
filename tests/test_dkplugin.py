@@ -7,8 +7,9 @@ from dkdjango.dktoken import Token
 from dkjs import jason
 from toolcall import jsondecoder
 from toolcall.dkplugin import toolcall_plugin
-from toolcall.dkpluginbase import Message, SuccessResponse, ServerError, raw_token_from_request
-from toolcall.dkpluginbase import UnautorizedResponse
+from toolcall.apiutils import raw_token_from_request
+from toolcall.message import Message, UnautorizedResponse, SuccessResponse, \
+    ServerError
 
 
 def test_message():
