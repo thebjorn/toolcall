@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>1 - Start exam</h1>
+    <p>This page will normally be a server page where the user is already logged in.</p>
+
     {% for tool in tools %}
         <button onclick="window.open('/tooluser/start-tool/{{ tool.slug }}/', '{{ tool.slug }}', 'resizable,scrollbar,status,noopener');">
             <img src="{{ tool.icon }}" alt="">

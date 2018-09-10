@@ -15,18 +15,9 @@ class Client(models.Model):
     """An API client.
     """
     name = models.CharField(max_length=100, unique=True)
-
-    client_secret = models.CharField(
-        max_length=255,  # 32
-        help_text="We sign transmissions using this as key to "
-                  "``django.core.signing.Signer``.")
-
     receive_start_token_url = models.CharField(
         max_length=255,
         help_text="Url where we redirect the end user with a token.")
-    receive_start_data_url = models.CharField(
-        max_length=255,
-        help_text="Url where we send start data for user.")
     receive_result_token_url = models.CharField(
         max_length=255,
         help_text="Url where we return the result token and expect result "
@@ -147,6 +138,7 @@ class ToolCallLog(models.Model):
         ordering = ['timestamp']
 
 
+# not used here..
 class ToolcallResult(models.Model):
     user = models.ForeignKey(User, blank=True, null=True)
     toolcall_participant_id = models.CharField(

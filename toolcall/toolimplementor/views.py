@@ -75,7 +75,7 @@ def run_my_tool(request):
         'timestamp': datetime.datetime.now().isoformat(),
         'data': {
             'persnr': start['persnr'],
-            'participant_id': 42,      # client-local ID
+            'participant_id': 42,      # client-local ID for post-hoc tracking
             'exam': start['exam'],  # (my-tool)
             'passed': True,         # did the user pass the test
             "score": 42,

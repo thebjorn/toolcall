@@ -5,9 +5,15 @@
 
 from django.conf.urls import *  # pylint:disable=W0401
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
 from . import views
 
 urlpatterns = [
+    # NOTE: using the admin site's template for user logins as a shortcut..
+    url(r'^accounts/login/$', login, {'template_name': 'admin/login.html'}),
+    url(r'^accounts/login/$', logout),
+
+
     url(r'^$', views.home, name='home'),
     url(r'^admin/', include(admin.site.urls)),
 ]
