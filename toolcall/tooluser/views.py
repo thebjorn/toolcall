@@ -1,74 +1,96 @@
 # -*- coding: utf-8 -*-
 import datetime
-import os
-import time
 
-from django import http
-from django.conf import settings
+from django import shortcuts as dj, template
+from django.contrib.auth.decorators import login_required
+from dkredis import dkredis
 
 import toolcall.message
-from toolcall import apiutils
+from toolcall import defaults
 from toolcall.dktoken import Token
+from toolcall.models import Tool, ToolCall
 
 
-def fetch_start_token(request):
-    """Fetch data from the token that the calling site deposited in redis.
-    """
-    startinfo = {}
-    try:
-        starttoken = apiutils.dk_token(request)
-        cn = dkredis.connect()
-        startinfo = dkredis.pop_pyval('TOKEN-%s' % starttoken, cn)
-
-        if startinfo is None:
-            # bjorn.message(request.path, request, "starttoken-expired")
-            return None
-
-        return startinfo
-
-    except Token.Invalid as e:
-        # bjorn.message(request.path, request, traceback.format_exc())
-        return None
-
-    except Exception as e:
-        # bjorn.message(request.path, request, traceback.format_exc())
-        return None
+# def encrypt_user(usr):
+#     from cryptography.fernet import Fernet
+#     key = Fernet.generate_key()
+#     f = Fernet(key)
+#     return f.encrypt(str(usr.id))
 
 
-def assessment_begin(request):
-    """Authenticate and authorize user, before redirecting them with
-       a token.
-    """
-    startinfo = fetch_start_token(request)
-    if startinfo is None:
-        url = defaults.TOOLCALL_ERROR_RESTART_URL
-        return http.HttpResponseRedirect(url)
+def generate_unique_id(usr):
+    p = 59928302355241427583868506337732
+    return 'N' + str(p ^ usr.id)
 
-    logfile_name = os.path.join(settings.LOGDIR, 'toolcall-begin-assessment.log')
-    with open(logfile_name, 'a+') as _log:
-        logid = int(time.time() * 1000)
 
-        def log(*args):
-            print >>_log, logid, datetime.datetime.now(), ' '.join([str(a) for a in args])
+def fetch_progress_record(user, tool):
+    ToolCall.close_open_attempts(tool, user)
+    now = datetime.datetime.now()
+    progress = None
 
-        token = Token()
-        timeout = toolcall_plugin.timeout
-        url = toolcall_plugin.assessment_redirect.url
-        url += '?access_token=%s' % token
-
-        usr = request.user
-        value = toolcall.message.Message(
-            "person", token,
-            firstName=startinfo['first_name'],
-            lastName=startinfo['last_name'],
-            exam=startinfo['exam'],
-            persnr=startinfo['persnr'],
-            extra_time=startinfo['extra_time'],
-            exam_kind=startinfo['exam_kind'],
-            redirect_url=startinfo['redirect_url'],
-            system=startinfo['system']
+    # if tool.restartable:
+    #     restart_cutoff = now - datetime.timedelta(
+    #         minutes=tool.restart_duration_minutes)
+    #     open_attempts = list(ToolCall.objects.filter(
+    #         tool=tool,
+    #         user=user,
+    #         ended__isnull=True,
+    #         started__gt=restart_cutoff
+    #     ).order_by('-started'))
+    #     if open_attempts:
+    #         kind = 'restart'
+    #         progress = open_attempts[0]
+    #         for tcall in open_attempts[1:]:
+    #             tcall.timed_out(now)
+    if not progress:
+        progress = ToolCall.objects.create(
+            tool=tool,
+            user=user,
+            started=now,
+            status='initial'
         )
+    return progress
 
-        dkredis.set_pyval('TOKEN-%s' % token, value, timeout)
-        log('sending to toolcall:', token, value)
-        return http.HttpResponseRedirect(url)
+
+# finlib.__quizz:begin__assessment
+@login_required
+def start_tool(request, slug):
+    """User clicked on start-tool button.
+    """
+    tool = dj.get_object_or_404(Tool, slug=slug)
+    progress = fetch_progress_record(request.user, tool)
+
+    token = Token()
+
+    url = tool.client.receive_start_token_url
+    url += '?access_token=%s' % token
+
+    usr = request.user
+    value = toolcall.message.Message(
+        "person", token,
+        firstName=usr.first_name,
+        lastName=usr.last_name,
+        exam=tool.slug,
+        persnr=generate_unique_id(usr),
+        extra_time=False,  # usr.has_perm(...)
+        exam_kind='start',
+
+        system=progress.sign()
+    )
+
+    dkredis.set_pyval('TOKEN-%s' % token,
+                      value,
+                      defaults.TOOLCALL_TOKEN_TIMEOUT_SECS)
+
+    progress.set_status('start-tk-sent')
+    return dj.render_to_response(
+        'toolcall/tooluser/start-tool.html',
+        template.Context({
+            "tool": tool,
+            "token": Token(),
+            "value": value,
+            "url": url,
+            "progress": progress,
+            "request": request
+        })
+    )

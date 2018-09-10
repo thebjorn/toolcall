@@ -2,7 +2,7 @@
 from dk.collections import pset
 import re
 import json
-# from dkjs import jason
+from . import jason
 from dateutil import parser
 
 
@@ -46,6 +46,6 @@ class ISO8601Decoder(json.JSONDecoder):
         # return {k: self.convert(v) for k, v in attrs}
         return pset((k, self.convert(v)) for k, v in attrs)
 
-#
-# def loads(txt):
-#     return jason.loads(txt, cls=ISO8601Decoder)
+
+def loads(txt):
+    return jason.loads(txt, cls=ISO8601Decoder)

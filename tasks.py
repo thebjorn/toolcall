@@ -119,10 +119,19 @@ def build(ctx, less=False, docs=False, js=False, force=False):
                 "your package. Since it runs in a separate process you cannot"
                 "use settings.configure()"
             )
+
+        # input: ctx.pkg.source / 'models/legal_transitions.py'
+        # output: ctx.pkg.docs / 'diagrams/transitions.dot'
+        ctx.run('python {transitions2dot} {output}'.format(
+            transitions2dot=ctx.pkg.docs / 'transitions2dot.py',
+            output=ctx.pkg.docs / 'diagrams/transitions.dot'
+        ))
+
         for fname in ctx.pkg.docs.glob('diagrams/*.puml'):
             ctx.run('java -jar %s %s -tsvg -o %s' % (
                 PLANTUML_JAR, fname, ctx.pkg.docs / '_static'
             ))
+
         for fname in ctx.pkg.docs.glob('diagrams/*.dot'):
             ctx.run('dot -Tsvg -o %s %s' % (
                 ctx.pkg.docs / '_static' / fname.basename().switchext('.svg'),

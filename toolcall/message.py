@@ -5,7 +5,8 @@ import uuid
 
 from django import http
 
-from toolcall.defaults import TOOLCALL_RENEW_TOKEN_URL
+from . import dkhttp, jason
+from .defaults import TOOLCALL_RENEW_TOKEN_URL
 
 
 class Message(object):

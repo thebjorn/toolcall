@@ -7,7 +7,7 @@ api:
     version: 2
 
   urls:
-    root-url: https://afr.norsktest.no/toolcall/
+    root-url: http://localhost:8000/
 
     start_data:
       url: fetch-token/
@@ -17,8 +17,9 @@ api:
     result_token:
       url: result/
       description: >
-        The server returns the result token to this url and expects to receive
-        result data back.
-    debug:
-      create_token:
-        url: create-token/
+        The client sends a result token (and client name) to this url to signal
+        that a new result is available.
+
+#    debug:
+#      create_token:
+#        url: create-token/

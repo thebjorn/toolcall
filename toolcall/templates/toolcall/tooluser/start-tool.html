@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Tool</title>
+</head>
+<body>
+    <h1>2 - Start Tool: {{ tool.name }}</h1>
+    <table border=1>
+        <tr><th>Client</th>        <td>{{ tool.client.name }}</td></tr>
+        <tr><th>User</th>          <td>{{ request.user }}</td></tr>
+        <tr><th>Token</th>          <td>{{ token }}</td></tr>
+        <tr><th>Value</th>          <td><pre>{{ value }}</pre></td></tr>
+        <tr><th>ToolCall</th>
+            <td>
+                {{ progress }}
+                <hr>
+                {% for rec in progress.logs.all %}
+                    {{ rec }}<br>
+                {% endfor %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Start tool</th>
+            <td>
+
+                <a href="{{ url }}">
+                    Start <pre>{{ tool.client.receive_start_token_url }}?access_token={{ token }}</pre>
+                </a>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

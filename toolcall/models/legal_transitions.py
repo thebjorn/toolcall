@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import textwrap
-# from django.conf import settings
 
 DIRNAME = os.path.dirname(__file__)
 
@@ -48,20 +46,28 @@ states = [
         "Client result has been sucessfully saved on server", {}),
     ('finished-ok',
         "Tool call has finished without error", {'shape': 'doublecircle'}),
+    ('finished-err',
+            "Tool call has finished with error", {'shape': 'doublecircle'}),
     ('err',
         'Error', {'style':'filled', 'fillcolor':'red', 'fontcolor':'white'}),
 ]
 
+choices = [s[:2] for s in states]
+
+# print "MAXLEN:", max(len(choice[0]) for choice in choices)
+
 transitions = {
     'initial':                  ['started'],
-    'started':                  ['tool-validated'],
-    'tool-validated':           ['authenticated', 'err'],
+    # 'started':                  ['tool-validated'],
+    # 'tool-validated':           ['authenticated', 'err'],
     'authenticated':            ['authorized', 'err'],
     'authorized':               ['start-tk-sent', 'err'],
 
     # communication 1: server sends a start token to the client
-    'start-tk-sent':            ['start-tk-sent-ok', 'start-tk-sent-err'],
-    'start-tk-sent-ok':         ['start-tk-received'],
+    # 'start-tk-sent':            ['start-tk-sent-ok', 'start-tk-sent-err'],
+    # 'start-tk-sent-ok':         ['start-tk-received'],
+
+    'start-tk-sent':            ['start-tk-received'],
 
     # communication 2: client returns start token
     'start-tk-received':        ['start-tk-ok', 'start-tk-err'],
@@ -80,6 +86,11 @@ transitions = {
     # communication 6: client returns result data to server
     'result-received-ok':       ['result-saved'],
     'result-saved':             ['finished-ok'],
+    'start-tk-sent-err':        ['finished-err'],
+    'start-tk-err':             ['finished-err'],
+    'start-data-sent-err':      ['finished-err'],
+    'result-received-err':      ['finished-err'],
+
 
     'err':                      [],
 }
@@ -107,59 +118,5 @@ if True:  # settings.DEBUG:
         print "rhs - lhs:", rhs - lhs
         print allstates
 
-    _validate_state_transitions(transitions, states)
+    # _validate_state_transitions(transitions, states)
 
-
-    def transitions_to_dot(transitions, states):
-        sdata = {s[0]: s[2] for s in states}
-        rules = []
-        for cur, nexts in transitions.iteritems():
-            for nxt in nexts:
-                rule = '    "%s" -> "%s"' % (cur, nxt)
-                if 'comm' in sdata[nxt]:
-                    rule += ' [label="step-%d"]' % sdata[nxt]['comm']
-                rules.append(rule + ';')
-            #
-            # if len(nexts) == 0:
-            #     continue
-            # elif len(nexts) == 1:
-            #     rules.append('    "%s" -> "%s";' % (cur, nexts[0]))
-            # else:
-            #     rules.append(
-            #         '    "%s" -> {%s};' % (cur, ';'.join(['"%s"' % n for n in nexts]))
-            #     )
-
-        nodes = []
-
-        def fillcolor(c, fc=None):
-            return {'style': 'filled', 'fillcolor': c, 'fontcolor': fc or 'white'}
-
-        for node, attrs in sdata.iteritems():
-            if node.endswith('-err'):
-                attrs.update(fillcolor('red'))
-            if node.endswith('-ok'):
-                attrs.update(fillcolor('green'))
-            if attrs:
-                if 'comm' in attrs:
-                    attrs.update(fillcolor('blue'))
-
-                nodeattrs = '    "%s" [%s];' % (node, ';'.join('%s=%s' % kv for kv in attrs.iteritems()))
-                nodes.append(nodeattrs)
-
-
-        return textwrap.dedent("""
-        digraph G {
-            node [shape=box];
-            rankdir = "LR";
-        %s
-        %s
-        }
-        """ % (
-            '\n    '.join(rules),
-            '\n    '.join(nodes)
-        ))
-
-    with open(os.path.join(DIRNAME, '../../docs/diagrams/transitions.dot'), 'w') as fp:
-        dot = transitions_to_dot(transitions, states)
-        print dot
-        fp.write(dot)

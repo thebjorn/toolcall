@@ -2,45 +2,32 @@
 
 """Base level handling of results from toolcall.
 """
-import os
-
 import requests
-from django.conf import settings
 
 from toolcall import jsondecoder
-from toolcall.dkplugin import toolcall_plugin
 from toolcall.toolcall_exceptions import (
     ToolcallJSonDecodeError,
     ToolcallResultException,
     ToolcallMessageException,
     ToolcallInvalidResponse)
 from dk.collections import pset
-from dksys import bjorn
 
 
-def fetch_result_token(token, getter=requests.get, req=None):
+def fetch_result_token(client, token):
     """Return validated data from toolcall result token.
     """
     try:
-        res = getter(
-            toolcall_plugin.result.url,
-            headers={'Accept': 'application/json,text/*'},
-            # verify=False,  # TODO: remove when not using Fiddler anymore..
-            data={'access_token': str(token)}
-        )
+        # res = requests.get(
+        #     client.receive_result_token_url,
+        #     headers={'Accept': 'application/json,text/*'},
+        #     data={'access_token': str(token)}
+        # )
+        res = requests.get(client.receive_result_token_url + '?access_token=' + str(token))
         if not res.ok:
             raise ToolcallInvalidResponse(
                 "Not a 200 response: %r, token: %r" % (res, token))
-        # bjorn.message("Logging toolcall result:",
-        #               res, getattr(res, 'text', "no-text-attr"),
-        #               req)
-        try:
-            with open(os.path.join(settings.LOGDIR, 'toolcall.log'), 'a+') as fp:
-                print >>fp, getattr(res, 'text', 'NO-DATA')
-        except Exception as e:
-            bjorn.traceback()
     except requests.RequestException:
-        bjorn.traceback()
+        # bjorn.traceback()
         raise
 
     try:
