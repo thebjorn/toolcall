@@ -1,16 +1,43 @@
 
 
-toolcall - call external tool and get results
+toolcall - call an external
 ==================================================
+
+This is a sample Django package that includes both the tool-user part
+(code that presents tools to users), the toolcall server part (code that
+authenticates and authorizes users, and redirects the tool-user to the
+tool), and the tool implementor part (this is a stub implementation of
+the client).
+
+New clients should start by looking at the included client,
+http://127.0.0.1:8000/admin/toolcall/client/1/, and the toolcall/tooluser
+directory; and perhaps by running through the user flow
+(http://127.0.0.1:8000/) but please read the user flow section below
+for context.
+
+About this package (quickstart..)
+---------------------------------
+This package is self-contained in the sense that it includes the enire
+user flow and a (sqlite) database that can be used for testing.
 
 This project is set up to demonstrate the toolcall api.
 
-Create a new virtualenv and install the requirements, and the toolcall
+install
+..........
+Create a new virtualenv and download the code::
+
+    > mkvirtualenv toolcall
+    toolcall> git clone https://github.com/thebjorn/toolcall.git
+    toolcall> cd toolcall
+
+then install the requirements, and the toolcall
 package in dev mode::
 
     toolcall> pip install -r requirements.txt
     toolcall> pip install -e .
 
+create the database
+.....................
 To create the sqlite database with syncdb, but answer no to the superuser
 question::
 
@@ -36,17 +63,24 @@ question::
     You have installed Django's auth system, and don't have any superusers defined.
     Would you like to create one now? (yes/no): no
 
-Load the included fixture::
+Load the included fixture
+...........................
+::
 
     (toolcall) go|c:\github\toolcall> python manage.py loaddata dumpdata.json
     Installed 50 object(s) from 1 fixture(s)
 
-The fixture contains a superuser with username/password == admin/admin, and
-a regular user with username/password == user/user.
+.. note:: The fixture contains a superuser with username/password == admin/admin, and
+          a regular user with username/password == user/user.
 
-Run the server::
+Run the server
+..............
+::
 
     python manage.py runserver
+
+User flow
+-------------
 
 There is one client defined which you can view at:
 http://127.0.0.1:8000/admin/toolcall/client/1/
@@ -62,16 +96,17 @@ are running on the same host here, it is better if you use a separate web browse
 the one you opened the admin site in.
 
 Step 1: user clicks button to start tool/exam
----------------------------------------------
+.............................................
 view: toolcall.views.home
 
 The button opens a new window for running the exam. The window is opened with ``noopener``.
 
-.. note:: as a shortcut I've re-used the admin site's login template for user logins.
-
+.. note:: as a shortcut I've re-used the admin site's login template for
+          user logins in this example client. You should use your regular
+          procedures for logging users in.
 
 Step 2: user is redirected to client with access_token
-------------------------------------------------------
+.......................................................
 view toolcall.tooluser.views.start_tool
 
 This view will normally redirect directly to the client, but here it presents
@@ -80,7 +115,7 @@ proceed.  In debug mode you have 200 seconds (``toolcall.defaults.TOOLCALL_TOKEN
 before the token is invalid).
 
 Step 3: client
---------------
+..............
 Clients need to implement the urls/views in toolcall/toolimplementor.
 
 There are two urls that need to be implemented. Here they're called::
@@ -90,8 +125,10 @@ There are two urls that need to be implemented. Here they're called::
 
 which correspond to the values in the Client model.
 
-``start-token`` is called after step 2 when the user is redirected with an access_token.
-Check ``toolcall/toolimplementor/views.py:receive_start_token`` for a sample implementation.
+``start-token`` is called after step 2 when the user is redirected with an
+access_token.
+Check ``toolcall/toolimplementor/views.py:receive_start_token`` for 
+a sample implementation.
 I would suggest creating auth.Users and logging them in.
 
 .. note:: You'll need to save some of the start data values so you can return them to us
@@ -104,7 +141,7 @@ that only creates a token and a result structure, store them in redis, and sends
 to the server's result token url (the client name is also sent).
 
 Step 4: the server sends result token
--------------------------------------
+......................................
 The server immediately sends the token back to the client to the
 ``toolcall.toolimplementor.views.send_result_data`` view (``result-token/`` url, as defined
 in the Client model).
@@ -112,17 +149,18 @@ in the Client model).
 The client fetches the result data from redis and returns it.
 
 
-Comments
---------
-- I've used redis for token storage because it's part of our stack. The client is of course
-  free to use any other solution.
-- the persnr/unique ID algorithm here is not the one we use, but creates similar looking
-  unique IDs that are unique and durable per user.
-- I've kept the client code simple for pedagogical reasons. ``toolcall.views`` is more similar
-  to what we use in production.
-- The ToolcallResult model is not used here (it normally stores the result data verbatim.
-- The progress records (ToolCall, ToolCallLog) are functional but not safe (the transitions
-  are neither correct nor checked - but they are logged..)
+Comments regarding the sample client implementation
+....................................................
+- I've used redis for token storage because it's part of our stack.
+  The client is of course free to use any other solution.
+- the persnr/unique ID algorithm here is not the one we use, but
+  creates similar looking unique IDs that are unique and durable per user.
+- I've kept the client code simple for pedagogical reasons.
+  ``toolcall.views`` is more similar to what we use in production.
+- The ToolcallResult model is not used here (it normally stores the
+  result data verbatim.
+- The progress records (ToolCall, ToolCallLog) are functional but not safe
+  (the transitions are neither correct nor checked - but they are logged..)
 
 
 

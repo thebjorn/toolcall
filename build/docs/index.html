@@ -1,0 +1,535 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>toolcall - call an external &#8212; toolcall 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="toolcall package" href="toolcall.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="toolcall-call-an-external">
+<h1>toolcall - call an external<a class="headerlink" href="#toolcall-call-an-external" title="Permalink to this headline">¶</a></h1>
+<p>This is a sample Django package that includes both the tool-user part
+(code that presents tools to users), the toolcall server part (code that
+authenticates and authorizes users, and redirects the tool-user to the
+tool), and the tool implementor part (this is a stub implementation of
+the client).</p>
+<p>New clients should start by looking at the included client,
+<a class="reference external" href="http://127.0.0.1:8000/admin/toolcall/client/1/">http://127.0.0.1:8000/admin/toolcall/client/1/</a>, and the toolcall/tooluser
+directory; and perhaps by running through the user flow
+(<a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>) but please read the user flow section below
+for context.</p>
+<div class="section" id="about-this-package-quickstart">
+<h2>About this package (quickstart..)<a class="headerlink" href="#about-this-package-quickstart" title="Permalink to this headline">¶</a></h2>
+<p>This package is self-contained in the sense that it includes the enire
+user flow and a (sqlite) database that can be used for testing.</p>
+<p>This project is set up to demonstrate the toolcall api.</p>
+<div class="section" id="install">
+<h3>install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h3>
+<p>Create a new virtualenv and download the code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">mkvirtualenv</span> <span class="n">toolcall</span>
+<span class="n">toolcall</span><span class="o">&gt;</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">thebjorn</span><span class="o">/</span><span class="n">toolcall</span><span class="o">.</span><span class="n">git</span>
+<span class="n">toolcall</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="n">toolcall</span>
+</pre></div>
+</div>
+<p>then install the requirements, and the toolcall
+package in dev mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">toolcall</span><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">toolcall</span><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-the-database">
+<h3>create the database<a class="headerlink" href="#create-the-database" title="Permalink to this headline">¶</a></h3>
+<p>To create the sqlite database with syncdb, but answer no to the superuser
+question:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(toolcall) go|c:\github\toolcall&gt; python manage.py syncdb
+Operations to perform:
+  Synchronize unmigrated apps: toolcall
+  Apply all migrations: admin, contenttypes, auth, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Creating table toolcall_client
+    Creating table toolcall_tool
+    Creating table toolcall_toolcall
+    Creating table toolcall_toolcalllog
+    Creating table toolcall_toolcallresult
+  Installing custom SQL...
+  Installing indexes...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+You have installed Django&#39;s auth system, and don&#39;t have any superusers defined.
+Would you like to create one now? (yes/no): no
+</pre></div>
+</div>
+</div>
+<div class="section" id="load-the-included-fixture">
+<h3>Load the included fixture<a class="headerlink" href="#load-the-included-fixture" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">toolcall</span><span class="p">)</span> <span class="n">go</span><span class="o">|</span><span class="n">c</span><span class="p">:</span>\<span class="n">github</span>\<span class="n">toolcall</span><span class="o">&gt;</span> <span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">loaddata</span> <span class="n">dumpdata</span><span class="o">.</span><span class="n">json</span>
+<span class="n">Installed</span> <span class="mi">50</span> <span class="nb">object</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="kn">from</span> <span class="mi">1</span> <span class="n">fixture</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The fixture contains a superuser with username/password == admin/admin, and
+a regular user with username/password == user/user.</p>
+</div>
+</div>
+<div class="section" id="run-the-server">
+<h3>Run the server<a class="headerlink" href="#run-the-server" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">runserver</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="user-flow">
+<h2>User flow<a class="headerlink" href="#user-flow" title="Permalink to this headline">¶</a></h2>
+<p>There is one client defined which you can view at:
+<a class="reference external" href="http://127.0.0.1:8000/admin/toolcall/client/1/">http://127.0.0.1:8000/admin/toolcall/client/1/</a>
+(in production it is a requirement that the urls use a https transport with a valid
+certificate).</p>
+<p>The endpoints are declared at <a class="reference external" href="http://127.0.0.1:8000/.api/toolcall/v2/">http://127.0.0.1:8000/.api/toolcall/v2/</a>
+It is not necessary to discover these (i.e. they can be manually read and hard-coded
+into your client). We will update the api version if any of the urls change.</p>
+<p>Open the start page at <a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> Since both the server and the client
+are running on the same host here, it is better if you use a separate web browser from
+the one you opened the admin site in.</p>
+<div class="section" id="step-1-user-clicks-button-to-start-tool-exam">
+<h3>Step 1: user clicks button to start tool/exam<a class="headerlink" href="#step-1-user-clicks-button-to-start-tool-exam" title="Permalink to this headline">¶</a></h3>
+<p>view: toolcall.views.home</p>
+<p>The button opens a new window for running the exam. The window is opened with <code class="docutils literal notranslate"><span class="pre">noopener</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">as a shortcut I’ve re-used the admin site’s login template for
+user logins in this example client. You should use your regular
+procedures for logging users in.</p>
+</div>
+</div>
+<div class="section" id="step-2-user-is-redirected-to-client-with-access-token">
+<h3>Step 2: user is redirected to client with access_token<a class="headerlink" href="#step-2-user-is-redirected-to-client-with-access-token" title="Permalink to this headline">¶</a></h3>
+<p>view toolcall.tooluser.views.start_tool</p>
+<p>This view will normally redirect directly to the client, but here it presents
+a page with some debug information. Click the “start tool” link at the bottom to
+proceed.  In debug mode you have 200 seconds (<code class="docutils literal notranslate"><span class="pre">toolcall.defaults.TOOLCALL_TOKEN_TIMEOUT_SECS</span></code>
+before the token is invalid).</p>
+</div>
+<div class="section" id="step-3-client">
+<h3>Step 3: client<a class="headerlink" href="#step-3-client" title="Permalink to this headline">¶</a></h3>
+<p>Clients need to implement the urls/views in toolcall/toolimplementor.</p>
+<p>There are two urls that need to be implemented. Here they’re called:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^start-token/$&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">receive_start_token</span><span class="p">),</span>
+<span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^result-token/$&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">send_result_data</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>which correspond to the values in the Client model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">start-token</span></code> is called after step 2 when the user is redirected with an
+access_token.
+Check <code class="docutils literal notranslate"><span class="pre">toolcall/toolimplementor/views.py:receive_start_token</span></code> for
+a sample implementation.
+I would suggest creating auth.Users and logging them in.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You’ll need to save some of the start data values so you can return them to us
+with the result.</p>
+</div>
+<div class="section" id="the-client-runs-the-exam">
+<h4>The client runs the exam<a class="headerlink" href="#the-client-runs-the-exam" title="Permalink to this headline">¶</a></h4>
+<p>I’ve illustrated this by a redirect to <code class="docutils literal notranslate"><span class="pre">toolcall.toolimplementor.views.run_my_tool</span></code>
+that only creates a token and a result structure, store them in redis, and sends the token
+to the server’s result token url (the client name is also sent).</p>
+</div>
+</div>
+<div class="section" id="step-4-the-server-sends-result-token">
+<h3>Step 4: the server sends result token<a class="headerlink" href="#step-4-the-server-sends-result-token" title="Permalink to this headline">¶</a></h3>
+<p>The server immediately sends the token back to the client to the
+<code class="docutils literal notranslate"><span class="pre">toolcall.toolimplementor.views.send_result_data</span></code> view (<code class="docutils literal notranslate"><span class="pre">result-token/</span></code> url, as defined
+in the Client model).</p>
+<p>The client fetches the result data from redis and returns it.</p>
+</div>
+<div class="section" id="comments-regarding-the-sample-client-implementation">
+<h3>Comments regarding the sample client implementation<a class="headerlink" href="#comments-regarding-the-sample-client-implementation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>I’ve used redis for token storage because it’s part of our stack.
+The client is of course free to use any other solution.</li>
+<li>the persnr/unique ID algorithm here is not the one we use, but
+creates similar looking unique IDs that are unique and durable per user.</li>
+<li>I’ve kept the client code simple for pedagogical reasons.
+<code class="docutils literal notranslate"><span class="pre">toolcall.views</span></code> is more similar to what we use in production.</li>
+<li>The ToolcallResult model is not used here (it normally stores the
+result data verbatim.</li>
+<li>The progress records (ToolCall, ToolCallLog) are functional but not safe
+(the transitions are neither correct nor checked - but they are logged..)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="toolcall-protocol">
+<span id="id1"></span><h2>Toolcall protocol<a class="headerlink" href="#toolcall-protocol" title="Permalink to this headline">¶</a></h2>
+<p>The following actor names are used synonymously:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">user/candidate/browser:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">The person starting the tool/exam.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">client/tool:</th><td class="field-body">The external (to NorskTest) entity that runs the tool.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">server/NorskTest:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">That’s us.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">tool/exam:</th><td class="field-body">The “thing” being run (most frequently an exam).</td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/information-flow.jpg" src="_images/information-flow.jpg" />
+<img alt="_images/callsequence.svg" src="_images/callsequence.svg" /><p>The user/browser is indicated in blue, red is server-to-server
+communication over a secure channel (ie. https).</p>
+<ol class="arabic simple">
+<li>We authenticate and authorize the Candidate so only candidates
+that have been logged in with us are sent to <code class="docutils literal notranslate"><span class="pre">toolcall</span></code>. We
+generate a unique token and redirect the candidate to an
+url defined in the <code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.models.tool_models.Client</span></code> model.</li>
+<li>The client sends a server-to-server GET request over a secure channel.</li>
+<li>NorskTest returns json-data containing tool start data. The data
+can/is customized to the individual client. The start-data:<ol class="loweralpha">
+<li><strong>must</strong> include a uniqe person reference (the client
+can e.g. use this to adapt the test when the candidate starts
+the second attempt). The person reference is sent back to
+NorskTest in step #6.</li>
+<li><strong>can</strong> include the name of the candidate (for personalization).</li>
+<li>etc.</li>
+</ol>
+</li>
+<li>The client runs the (external) tool and sends a (new) token back
+to NorskTest<ol class="loweralpha">
+<li>This is shown as a redirect in the diagram, meaning that it
+is possible for the candidate to return to the portal (whence
+they started the tool call). This should be a server-to-server
+communication if the user shouldn’t be redirected
+back to NorskTest.</li>
+</ol>
+</li>
+<li>NorskTest sends a server-to-server GET request over a secure channel.</li>
+<li>The client returns <a class="reference internal" href="result-data.html#result-data"><span class="std std-ref">result-data</span></a> in json format, containing the unique
+person reference (as received in #3), pass/fail, and a opaque id
+that can be used to track the call after the fact (to support complaint
+processing etc.)</li>
+</ol>
+<p>The client ought to be able to validate its own tokens (e.g. by adding
+a checksum).</p>
+<p>The token <strong>must</strong> only be valid for a short period of time, i.e.
+the period between 1 to 2, and 4 to 5, must be short. This will prevent
+a situation where an attacker has a large set of valid tokens that can be
+attacked.</p>
+<p>It <strong>must</strong> only be possible to resolve a token once (to prevent
+replay attacks).</p>
+<p>Tokens ought to be saved (or logged) so it is possible to debug the system
+across the server/client boundary.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is possible to implement a token transformation (decryption)
+between 1/2 and 4/5 so tokens transmitted over an open channel
+must be encrypted before sending on a secure channel.  This is
+currently not seen as necessary.</p>
+</div>
+</div>
+<div class="section" id="result-data">
+<span id="id2"></span><h2>result-data<a class="headerlink" href="#result-data" title="Permalink to this headline">¶</a></h2>
+<p>The views in
+<a class="reference external" href="https://github.com/thebjorn/toolcall/blob/master/toolcall/toolimplementor/views.py">https://github.com/thebjorn/toolcall/blob/master/toolcall/toolimplementor/views.py</a>
+are what you need to implement/integrate with your code,
+<a href="#id3"><span class="problematic" id="id4">:fn:`toolcall.toolimplementor.views.run_my_tool`</span></a>
+creates the result data structure
+(and stores it in redis); and
+<a href="#id5"><span class="problematic" id="id6">:fn:`toolcall.toolimplementor.views.send_result_data`</span></a>
+returns the result data structure to NorskTest.</p>
+<p>The result data should contain the following fields</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">persnr:</th><td class="field-body">the value you received for this field in the start-data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">toolcall_participant_id:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">an opaque reference to the progress/result data in your system
+(so we can send this to you when resolving issues).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">exam:</th><td class="field-body">the value you received in start-data <a class="footnote-reference" href="#f1" id="id7">[1]</a></td>
+</tr>
+<tr class="field-even field"><th class="field-name">score:</th><td class="field-body">integer value reresenting the score the user obtained (optional)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">passed:</th><td class="field-body">true if the user passed the exam, otherwise false</td>
+</tr>
+<tr class="field-even field"><th class="field-name">tstamp:</th><td class="field-body">an iso formatted timestamp rerpresnting when the user finished the exam</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">system:</th><td class="field-body">the value you received in start-data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">exam_kind:</th><td class="field-body">the exam context (optional, e.g. self-test, proctored, etc.),
+should generally be the same as received in start-data.</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[1]</a></td><td>extended with adaptive values if needed (e.g. if you’re sent
+“excel” and your exam adapts to user answers you could return e.g.
+“excel:expert”, “excel:basics” etc.)</td></tr>
+</tbody>
+</table>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">exam and exam_kind is in flux.</p>
+</div>
+</div>
+<div class="section" id="endpoints">
+<span id="id8"></span><h2>endpoints<a class="headerlink" href="#endpoints" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="server">
+<h3>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h3>
+<p>The server has two endpoints. The endpoints are defined in
+toolcall/toolcall-api.yaml and are also available from
+<a class="reference external" href="http://127.0.0.1:8000/.api/toolcall/v2/">http://127.0.0.1:8000/.api/toolcall/v2/</a></p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">the production server is not ready for v2 yet, but this sample
+package does.</p>
+</div>
+<div class="section" id="start-data">
+<h4>start_data<a class="headerlink" href="#start-data" title="Permalink to this headline">¶</a></h4>
+<p>In this sample app it is: <a class="reference external" href="http://localhost:8000/fetch-token/">http://localhost:8000/fetch-token/</a>
+It should be called with the start-data token as a GET parameter
+named <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8000/fetch-token/?access_token=1W6ofOChZt1AS4bdpkbOVKpdptVi0YDB48-UAZXz8PuB06cvNtwoiXBM20
+</pre></div>
+</div>
+</div>
+<div class="section" id="result-token">
+<h4>result_token<a class="headerlink" href="#result-token" title="Permalink to this headline">¶</a></h4>
+<p>In this sample app it is: <a class="reference external" href="http://localhost:8000/result/">http://localhost:8000/result/</a>
+It should be called with the result token as a GET parameter
+named <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, and the client name in a GET parameter
+named <code class="docutils literal notranslate"><span class="pre">client</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8000/result/?access_token=3525841484&amp;client=testclient
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="client">
+<h3>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h3>
+<p>The client has two endpoints. The endpoints are defined in the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.models.tool_models.Client</span></code> model.</p>
+<div class="section" id="receive-start-token-url">
+<h4>receive_start_token_url<a class="headerlink" href="#receive-start-token-url" title="Permalink to this headline">¶</a></h4>
+<p>Url where we redirect the end user with a token. In the sample client this is:
+<a class="reference external" href="http://localhost:8000/client/start-token/">http://localhost:8000/client/start-token/</a></p>
+</div>
+<div class="section" id="receive-result-token-url">
+<h4>receive_result_token_url<a class="headerlink" href="#receive-result-token-url" title="Permalink to this headline">¶</a></h4>
+<p>Url where we return the result token and expect result data in return.
+In the sample client this is:
+<a class="reference external" href="http://localhost:8000/client/result-token/">http://localhost:8000/client/result-token/</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="todo-list">
+<h1>ToDo list<a class="headerlink" href="#todo-list" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">Todo</p>
+<p class="last">the production server is not ready for v2 yet, but this sample
+package does.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="endpoints.html#index-0"><em>original entry</em></a> is located in c:\github\toolcall\docs\endpoints.rst, line 12.)</p>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">Todo</p>
+<p class="last">exam and exam_kind is in flux.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="#index-0"><em>original entry</em></a> is located in docs/result-data.rst, line 50.)</p>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">Todo</p>
+<p class="last">the production server is not ready for v2 yet, but this sample
+package does.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="#index-1"><em>original entry</em></a> is located in docs/endpoints.rst, line 12.)</p>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">Todo</p>
+<p class="last">exam and exam_kind is in flux.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="result-data.html#index-0"><em>original entry</em></a> is located in c:\github\toolcall\docs\result-data.rst, line 50.)</p>
+</div>
+<div class="section" id="api-docs-mostly-for-cross-referencing">
+<h1>api-docs (mostly for cross referencing)<a class="headerlink" href="#api-docs-mostly-for-cross-referencing" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="toolcall.html">toolcall package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="toolcall.toolimplementor.html">toolcall.toolimplementor package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.toolimplementor.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.urls">toolcall.toolimplementor.urls module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.views">toolcall.toolimplementor.views module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.toolimplementor.html#module-toolcall.toolimplementor">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="toolcall.tooluser.html">toolcall.tooluser package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.tooluser.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.tooluser.html#module-toolcall.tooluser.urls">toolcall.tooluser.urls module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.tooluser.html#module-toolcall.tooluser.views">toolcall.tooluser.views module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="toolcall.tooluser.html#module-toolcall.tooluser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.admin">toolcall.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.api">toolcall.api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.apiutils">toolcall.apiutils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.apps">toolcall.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.auth_backend">toolcall.auth_backend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.defaults">toolcall.defaults module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.dkhttp">toolcall.dkhttp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.dktoken">toolcall.dktoken module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.jason">toolcall.jason module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.jsondecoder">toolcall.jsondecoder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.message">toolcall.message module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.toolcall_exceptions">toolcall.toolcall_exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.toolresult">toolcall.toolresult module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.urls">toolcall.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall.views">toolcall.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.html#module-toolcall">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">toolcall - call an external</a><ul>
+<li><a class="reference internal" href="#about-this-package-quickstart">About this package (quickstart..)</a><ul>
+<li><a class="reference internal" href="#install">install</a></li>
+<li><a class="reference internal" href="#create-the-database">create the database</a></li>
+<li><a class="reference internal" href="#load-the-included-fixture">Load the included fixture</a></li>
+<li><a class="reference internal" href="#run-the-server">Run the server</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#user-flow">User flow</a><ul>
+<li><a class="reference internal" href="#step-1-user-clicks-button-to-start-tool-exam">Step 1: user clicks button to start tool/exam</a></li>
+<li><a class="reference internal" href="#step-2-user-is-redirected-to-client-with-access-token">Step 2: user is redirected to client with access_token</a></li>
+<li><a class="reference internal" href="#step-3-client">Step 3: client</a><ul>
+<li><a class="reference internal" href="#the-client-runs-the-exam">The client runs the exam</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#step-4-the-server-sends-result-token">Step 4: the server sends result token</a></li>
+<li><a class="reference internal" href="#comments-regarding-the-sample-client-implementation">Comments regarding the sample client implementation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#toolcall-protocol">Toolcall protocol</a></li>
+<li><a class="reference internal" href="#result-data">result-data</a></li>
+<li><a class="reference internal" href="#endpoints">endpoints</a><ul>
+<li><a class="reference internal" href="#server">Server</a><ul>
+<li><a class="reference internal" href="#start-data">start_data</a></li>
+<li><a class="reference internal" href="#result-token">result_token</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#client">Client</a><ul>
+<li><a class="reference internal" href="#receive-start-token-url">receive_start_token_url</a></li>
+<li><a class="reference internal" href="#receive-result-token-url">receive_result_token_url</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#todo-list">ToDo list</a></li>
+<li><a class="reference internal" href="#api-docs-mostly-for-cross-referencing">api-docs (mostly for cross referencing)</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="toolcall.html" title="next chapter">toolcall package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018 Bjorn Pettersen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

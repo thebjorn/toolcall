@@ -1,4 +1,4 @@
-@startuml
+@startuml callsequence
 server -> server : started
 server --> client : start-tk-sent
 client --> server : start-tk-received

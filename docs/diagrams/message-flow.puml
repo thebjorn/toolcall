@@ -1,5 +1,5 @@
-@startuml
-sender --> receiver : send unique-token
-receiver --> sender : return unique-token
-sender -> receiver : send data (+ token)
+@startuml messageflow
+sender --> receiver : redirect user with unique-token
+receiver --> sender : return unique-token (secure channel)
+sender -> receiver : send data (secure channel)
 @enduml

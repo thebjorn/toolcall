@@ -113,6 +113,9 @@ def build(ctx, less=False, docs=False, js=False, force=False):
             )
 
     if buildall or docs:
+        # output = 'svg'
+        output = 'png'
+
         if WARN_ABOUT_SETTINGS:
             warnings.warn(
                 "autodoc might need a dummy settings file in the root of "
@@ -128,17 +131,18 @@ def build(ctx, less=False, docs=False, js=False, force=False):
         ))
 
         for fname in ctx.pkg.docs.glob('diagrams/*.puml'):
-            ctx.run('java -jar %s %s -tsvg -o %s' % (
-                PLANTUML_JAR, fname, ctx.pkg.docs / '_static'
+            ctx.run('java -jar %s %s -t%s -o %s' % (
+                PLANTUML_JAR, fname, output, ctx.pkg.docs / '_static'
             ))
 
         for fname in ctx.pkg.docs.glob('diagrams/*.dot'):
-            ctx.run('dot -Tsvg -o %s %s' % (
-                ctx.pkg.docs / '_static' / fname.basename().switchext('.svg'),
+            ctx.run('dot -T%s -o %s %s' % (
+                output,
+                ctx.pkg.docs / '_static' / fname.basename().switchext('.' + output),
                 fname
             ))
 
-        # doctools.build(ctx, force=force)
+        doctools.build(ctx, force=force)
 
     if buildall or js:
         build_js(ctx, force)

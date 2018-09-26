@@ -1,0 +1,155 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Toolcall protocol &#8212; toolcall 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="toolcall-protocol">
+<span id="id1"></span><h1>Toolcall protocol<a class="headerlink" href="#toolcall-protocol" title="Permalink to this headline">¶</a></h1>
+<p>The following actor names are used synonymously:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">user/candidate/browser:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">The person starting the tool/exam.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">client/tool:</th><td class="field-body">The external (to NorskTest) entity that runs the tool.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">server/NorskTest:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">That’s us.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">tool/exam:</th><td class="field-body">The “thing” being run (most frequently an exam).</td>
+</tr>
+</tbody>
+</table>
+<img alt="_images/information-flow.jpg" src="_images/information-flow.jpg" />
+<img alt="_images/callsequence.svg" src="_images/callsequence.svg" /><p>The user/browser is indicated in blue, red is server-to-server
+communication over a secure channel (ie. https).</p>
+<ol class="arabic simple">
+<li>We authenticate and authorize the Candidate so only candidates
+that have been logged in with us are sent to <code class="docutils literal notranslate"><span class="pre">toolcall</span></code>. We
+generate a unique token and redirect the candidate to an
+url defined in the <code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.models.tool_models.Client</span></code> model.</li>
+<li>The client sends a server-to-server GET request over a secure channel.</li>
+<li>NorskTest returns json-data containing tool start data. The data
+can/is customized to the individual client. The start-data:<ol class="loweralpha">
+<li><strong>must</strong> include a uniqe person reference (the client
+can e.g. use this to adapt the test when the candidate starts
+the second attempt). The person reference is sent back to
+NorskTest in step #6.</li>
+<li><strong>can</strong> include the name of the candidate (for personalization).</li>
+<li>etc.</li>
+</ol>
+</li>
+<li>The client runs the (external) tool and sends a (new) token back
+to NorskTest<ol class="loweralpha">
+<li>This is shown as a redirect in the diagram, meaning that it
+is possible for the candidate to return to the portal (whence
+they started the tool call). This should be a server-to-server
+communication if the user shouldn’t be redirected
+back to NorskTest.</li>
+</ol>
+</li>
+<li>NorskTest sends a server-to-server GET request over a secure channel.</li>
+<li>The client returns <a class="reference internal" href="result-data.html#result-data"><span class="std std-ref">result-data</span></a> in json format, containing the unique
+person reference (as received in #3), pass/fail, and a opaque id
+that can be used to track the call after the fact (to support complaint
+processing etc.)</li>
+</ol>
+<p>The client ought to be able to validate its own tokens (e.g. by adding
+a checksum).</p>
+<p>The token <strong>must</strong> only be valid for a short period of time, i.e.
+the period between 1 to 2, and 4 to 5, must be short. This will prevent
+a situation where an attacker has a large set of valid tokens that can be
+attacked.</p>
+<p>It <strong>must</strong> only be possible to resolve a token once (to prevent
+replay attacks).</p>
+<p>Tokens ought to be saved (or logged) so it is possible to debug the system
+across the server/client boundary.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is possible to implement a token transformation (decryption)
+between 1/2 and 4/5 so tokens transmitted over an open channel
+must be encrypted before sending on a secure channel.  This is
+currently not seen as necessary.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/design.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018 Bjorn Pettersen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/design.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

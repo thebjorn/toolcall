@@ -1,0 +1,854 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>toolcall package &#8212; toolcall 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="toolcall.toolimplementor package" href="toolcall.toolimplementor.html" />
+    <link rel="prev" title="toolcall - call an external" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="toolcall-package">
+<h1>toolcall package<a class="headerlink" href="#toolcall-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="toolcall.toolimplementor.html">toolcall.toolimplementor package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.toolimplementor.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.urls">toolcall.toolimplementor.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.views">toolcall.toolimplementor.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.toolimplementor.html#module-toolcall.toolimplementor">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="toolcall.tooluser.html">toolcall.tooluser package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.tooluser.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.tooluser.html#module-toolcall.tooluser.urls">toolcall.tooluser.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.tooluser.html#module-toolcall.tooluser.views">toolcall.tooluser.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="toolcall.tooluser.html#module-toolcall.tooluser">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-toolcall.admin">
+<span id="toolcall-admin-module"></span><h2>toolcall.admin module<a class="headerlink" href="#module-toolcall.admin" title="Permalink to this headline">¶</a></h2>
+<p>toolcall admin.</p>
+<dl class="class">
+<dt id="toolcall.admin.ClientAdmin">
+<em class="property">class </em><code class="descclassname">toolcall.admin.</code><code class="descname">ClientAdmin</code><span class="sig-paren">(</span><em>model</em>, <em>admin_site</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/admin.html#ClientAdmin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.admin.ClientAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.admin.options.ModelAdmin</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.admin.ClientAdmin.inlines">
+<code class="descname">inlines</code><em class="property"> = [&lt;class 'toolcall.admin.ToolInlineAdmin'&gt;]</em><a class="headerlink" href="#toolcall.admin.ClientAdmin.inlines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ClientAdmin.list_display">
+<code class="descname">list_display</code><em class="property"> = ['id', 'receive_start_token_url', 'receive_result_token_url']</em><a class="headerlink" href="#toolcall.admin.ClientAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ClientAdmin.media">
+<code class="descname">media</code><a class="headerlink" href="#toolcall.admin.ClientAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.admin.ToolCallAdmin">
+<em class="property">class </em><code class="descclassname">toolcall.admin.</code><code class="descname">ToolCallAdmin</code><span class="sig-paren">(</span><em>model</em>, <em>admin_site</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/admin.html#ToolCallAdmin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.admin.ToolCallAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.admin.options.ModelAdmin</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.admin.ToolCallAdmin.inlines">
+<code class="descname">inlines</code><em class="property"> = [&lt;class 'toolcall.admin.ToolCallLogAdmin'&gt;]</em><a class="headerlink" href="#toolcall.admin.ToolCallAdmin.inlines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolCallAdmin.list_display">
+<code class="descname">list_display</code><em class="property"> = ['tool', 'user', 'started', 'ended', 'status']</em><a class="headerlink" href="#toolcall.admin.ToolCallAdmin.list_display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolCallAdmin.media">
+<code class="descname">media</code><a class="headerlink" href="#toolcall.admin.ToolCallAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.admin.ToolCallLogAdmin">
+<em class="property">class </em><code class="descclassname">toolcall.admin.</code><code class="descname">ToolCallLogAdmin</code><span class="sig-paren">(</span><em>parent_model</em>, <em>admin_site</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/admin.html#ToolCallLogAdmin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.admin.ToolCallLogAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.admin.options.TabularInline</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.admin.ToolCallLogAdmin.extra">
+<code class="descname">extra</code><em class="property"> = 0</em><a class="headerlink" href="#toolcall.admin.ToolCallLogAdmin.extra" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolCallLogAdmin.fields">
+<code class="descname">fields</code><em class="property"> = ['status', 'details']</em><a class="headerlink" href="#toolcall.admin.ToolCallLogAdmin.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolCallLogAdmin.media">
+<code class="descname">media</code><a class="headerlink" href="#toolcall.admin.ToolCallLogAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolCallLogAdmin.model">
+<code class="descname">model</code><a class="headerlink" href="#toolcall.admin.ToolCallLogAdmin.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.models.tool_models.ToolCallLog</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.admin.ToolInlineAdmin">
+<em class="property">class </em><code class="descclassname">toolcall.admin.</code><code class="descname">ToolInlineAdmin</code><span class="sig-paren">(</span><em>parent_model</em>, <em>admin_site</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/admin.html#ToolInlineAdmin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.admin.ToolInlineAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.admin.options.TabularInline</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.admin.ToolInlineAdmin.extra">
+<code class="descname">extra</code><em class="property"> = 1</em><a class="headerlink" href="#toolcall.admin.ToolInlineAdmin.extra" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolInlineAdmin.fields">
+<code class="descname">fields</code><em class="property"> = ['slug', 'name', 'description', 'icon', 'restartable', 'restart_duration_minutes']</em><a class="headerlink" href="#toolcall.admin.ToolInlineAdmin.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolInlineAdmin.media">
+<code class="descname">media</code><a class="headerlink" href="#toolcall.admin.ToolInlineAdmin.media" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.admin.ToolInlineAdmin.model">
+<code class="descname">model</code><a class="headerlink" href="#toolcall.admin.ToolInlineAdmin.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.models.tool_models.Tool</span></code></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.api">
+<span id="toolcall-api-module"></span><h2>toolcall.api module<a class="headerlink" href="#module-toolcall.api" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-toolcall.apiutils">
+<span id="toolcall-apiutils-module"></span><h2>toolcall.apiutils module<a class="headerlink" href="#module-toolcall.apiutils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="toolcall.apiutils.dk_token">
+<code class="descclassname">toolcall.apiutils.</code><code class="descname">dk_token</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/apiutils.html#dk_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.apiutils.dk_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="toolcall.apiutils.raw_token_from_request">
+<code class="descclassname">toolcall.apiutils.</code><code class="descname">raw_token_from_request</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/apiutils.html#raw_token_from_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.apiutils.raw_token_from_request" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="toolcall.apiutils.toolcall_token">
+<code class="descclassname">toolcall.apiutils.</code><code class="descname">toolcall_token</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/apiutils.html#toolcall_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.apiutils.toolcall_token" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.apps">
+<span id="toolcall-apps-module"></span><h2>toolcall.apps module<a class="headerlink" href="#module-toolcall.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="toolcall.apps.Toolcall">
+<em class="property">class </em><code class="descclassname">toolcall.apps.</code><code class="descname">Toolcall</code><span class="sig-paren">(</span><em>app_name</em>, <em>app_module</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/apps.html#Toolcall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.apps.Toolcall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.apps.Toolcall.name">
+<code class="descname">name</code><em class="property"> = 'toolcall'</em><a class="headerlink" href="#toolcall.apps.Toolcall.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.apps.Toolcall.verbose_name">
+<code class="descname">verbose_name</code><em class="property"> = 'Toolcall'</em><a class="headerlink" href="#toolcall.apps.Toolcall.verbose_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.auth_backend">
+<span id="toolcall-auth-backend-module"></span><h2>toolcall.auth_backend module<a class="headerlink" href="#module-toolcall.auth_backend" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="toolcall.auth_backend.DKSSOBlindTrustAuthenticator">
+<em class="property">class </em><code class="descclassname">toolcall.auth_backend.</code><code class="descname">DKSSOBlindTrustAuthenticator</code><a class="reference internal" href="_modules/toolcall/auth_backend.html#DKSSOBlindTrustAuthenticator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.auth_backend.DKSSOBlindTrustAuthenticator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.contrib.auth.backends.ModelBackend</span></code></p>
+<dl class="method">
+<dt id="toolcall.auth_backend.DKSSOBlindTrustAuthenticator.authenticate">
+<code class="descname">authenticate</code><span class="sig-paren">(</span><em>username=None</em>, <em>password=None</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/auth_backend.html#DKSSOBlindTrustAuthenticator.authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.auth_backend.DKSSOBlindTrustAuthenticator.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.defaults">
+<span id="toolcall-defaults-module"></span><h2>toolcall.defaults module<a class="headerlink" href="#module-toolcall.defaults" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-toolcall.dkhttp">
+<span id="toolcall-dkhttp-module"></span><h2>toolcall.dkhttp module<a class="headerlink" href="#module-toolcall.dkhttp" title="Permalink to this headline">¶</a></h2>
+<p>Naming the HTTP response codes.</p>
+<dl class="exception">
+<dt id="toolcall.dkhttp.DkHttpError">
+<em class="property">exception </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">DkHttpError</code><a class="reference internal" href="_modules/toolcall/dkhttp.html#DkHttpError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.DkHttpError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></p>
+<p>Base exception for dk http.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpAccepted">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpAccepted</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpAccepted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpAccepted" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpAccepted.status_code">
+<code class="descname">status_code</code><em class="property"> = 202</em><a class="headerlink" href="#toolcall.dkhttp.HttpAccepted.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpApplicationError">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpApplicationError</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpApplicationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpApplicationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpApplicationError.status_code">
+<code class="descname">status_code</code><em class="property"> = 500</em><a class="headerlink" href="#toolcall.dkhttp.HttpApplicationError.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpBadRequest">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpBadRequest</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpBadRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpBadRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpBadRequest.status_code">
+<code class="descname">status_code</code><em class="property"> = 400</em><a class="headerlink" href="#toolcall.dkhttp.HttpBadRequest.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpConflict">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpConflict</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpConflict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpConflict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpConflict.status_code">
+<code class="descname">status_code</code><em class="property"> = 409</em><a class="headerlink" href="#toolcall.dkhttp.HttpConflict.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpForbidden">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpForbidden</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpForbidden"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpForbidden" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpForbidden.status_code">
+<code class="descname">status_code</code><em class="property"> = 403</em><a class="headerlink" href="#toolcall.dkhttp.HttpForbidden.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpGone">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpGone</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpGone"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpGone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpGone.status_code">
+<code class="descname">status_code</code><em class="property"> = 410</em><a class="headerlink" href="#toolcall.dkhttp.HttpGone.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpMethodNotAllowed">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpMethodNotAllowed</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpMethodNotAllowed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpMethodNotAllowed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpMethodNotAllowed.status_code">
+<code class="descname">status_code</code><em class="property"> = 405</em><a class="headerlink" href="#toolcall.dkhttp.HttpMethodNotAllowed.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpMultipleChoices">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpMultipleChoices</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpMultipleChoices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpMultipleChoices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpMultipleChoices.status_code">
+<code class="descname">status_code</code><em class="property"> = 300</em><a class="headerlink" href="#toolcall.dkhttp.HttpMultipleChoices.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpNoContent">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpNoContent</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpNoContent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpNoContent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpNoContent.status_code">
+<code class="descname">status_code</code><em class="property"> = 204</em><a class="headerlink" href="#toolcall.dkhttp.HttpNoContent.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpNotFound">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpNotFound</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpNotFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpNotFound.status_code">
+<code class="descname">status_code</code><em class="property"> = 404</em><a class="headerlink" href="#toolcall.dkhttp.HttpNotFound.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpNotImplemented">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpNotImplemented</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpNotImplemented"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpNotImplemented" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpNotImplemented.status_code">
+<code class="descname">status_code</code><em class="property"> = 501</em><a class="headerlink" href="#toolcall.dkhttp.HttpNotImplemented.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpNotModified">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpNotModified</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpNotModified"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpNotModified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpNotModified.status_code">
+<code class="descname">status_code</code><em class="property"> = 304</em><a class="headerlink" href="#toolcall.dkhttp.HttpNotModified.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpSeeOther">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpSeeOther</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpSeeOther"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpSeeOther" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpSeeOther.status_code">
+<code class="descname">status_code</code><em class="property"> = 303</em><a class="headerlink" href="#toolcall.dkhttp.HttpSeeOther.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpTooManyRequests">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpTooManyRequests</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpTooManyRequests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpTooManyRequests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpTooManyRequests.status_code">
+<code class="descname">status_code</code><em class="property"> = 429</em><a class="headerlink" href="#toolcall.dkhttp.HttpTooManyRequests.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpUnauthorized">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpUnauthorized</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpUnauthorized"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpUnauthorized" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpUnauthorized.status_code">
+<code class="descname">status_code</code><em class="property"> = 401</em><a class="headerlink" href="#toolcall.dkhttp.HttpUnauthorized.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="toolcall.dkhttp.HttpUnprocessableEntity">
+<em class="property">class </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">HttpUnprocessableEntity</code><span class="sig-paren">(</span><em>content=''</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#HttpUnprocessableEntity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.HttpUnprocessableEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.http.response.HttpResponse</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.HttpUnprocessableEntity.status_code">
+<code class="descname">status_code</code><em class="property"> = 422</em><a class="headerlink" href="#toolcall.dkhttp.HttpUnprocessableEntity.status_code" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="toolcall.dkhttp.ImmediateHttpResponse">
+<em class="property">exception </em><code class="descclassname">toolcall.dkhttp.</code><code class="descname">ImmediateHttpResponse</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dkhttp.html#ImmediateHttpResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dkhttp.ImmediateHttpResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#toolcall.dkhttp.DkHttpError" title="toolcall.dkhttp.DkHttpError"><code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.dkhttp.DkHttpError</span></code></a></p>
+<p>This exception is used to interrupt the flow of processing to immediately
+return a custom HttpResponse.</p>
+<p>Common uses include:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="k">for</span> <span class="n">authentication</span> <span class="p">(</span><span class="n">like</span> <span class="n">digest</span><span class="o">/</span><span class="n">OAuth</span><span class="p">)</span>
+<span class="o">*</span> <span class="k">for</span> <span class="n">throttling</span>
+</pre></div>
+</div>
+<p>(from TastyPie).</p>
+<dl class="attribute">
+<dt id="toolcall.dkhttp.ImmediateHttpResponse.response">
+<code class="descname">response</code><a class="headerlink" href="#toolcall.dkhttp.ImmediateHttpResponse.response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.dktoken">
+<span id="toolcall-dktoken-module"></span><h2>toolcall.dktoken module<a class="headerlink" href="#module-toolcall.dktoken" title="Permalink to this headline">¶</a></h2>
+<p>Token management.</p>
+<dl class="class">
+<dt id="toolcall.dktoken.Token">
+<em class="property">class </em><code class="descclassname">toolcall.dktoken.</code><code class="descname">Token</code><span class="sig-paren">(</span><em>incoming=None</em>, <em>length=58</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dktoken.html#Token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dktoken.Token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A mostly random token, but with enough structure to validate its
+structure and timeliness.</p>
+<dl class="exception">
+<dt id="toolcall.dktoken.Token.Invalid">
+<em class="property">exception </em><code class="descname">Invalid</code><a class="reference internal" href="_modules/toolcall/dktoken.html#Token.Invalid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dktoken.Token.Invalid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.ValueError</span></code></p>
+<p>Exception thrown when token is invalid.
+Call <cite>str(exc)</cite> to get the details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="toolcall.dktoken.Token.create_new_token">
+<code class="descname">create_new_token</code><span class="sig-paren">(</span><em>length=58</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dktoken.html#Token.create_new_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dktoken.Token.create_new_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new token.</p>
+<p>A token has the following format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[pad?][b64-pad-count]b64([random-bytes][timestamp])[cksum1][ck2]
+</pre></div>
+</div>
+<p>The <cite>random-bytes</cite> are coming from a cryptographic source, the
+timestamp is the last six digits of <cite>time.time()</cite> (i.e. about
+27 hours), and the checksum is the last digit of a crc32 checksum.
+This is just enough to do some very rudimentary checking.</p>
+<p>The <cite>random-bytes</cite> and <cite>timestamp</cite> are concatenated and encoded
+as (urlsafe) base64, then (an ascii version of) the checksum digit
+is added to the end.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="toolcall.dktoken.Token.inspect">
+<em class="property">static </em><code class="descname">inspect</code><span class="sig-paren">(</span><em>token</em>, <em>now=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dktoken.html#Token.inspect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dktoken.Token.inspect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="toolcall.dktoken.Token.valid">
+<code class="descname">valid</code><a class="headerlink" href="#toolcall.dktoken.Token.valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property returning <cite>True</cite> or <cite>False</cite> after calling <cite>validate()</cite>.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="toolcall.dktoken.Token.validate">
+<em class="property">static </em><code class="descname">validate</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/dktoken.html#Token.validate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.dktoken.Token.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate incoming token.</p>
+<p>Raises <cite>Token.Invalid</cite> with the following possible reasons:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Token value</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>token-empty</td>
+<td>Token was an empty string.</td>
+</tr>
+<tr class="row-odd"><td>token-syntax-error</td>
+<td>Token too short, or has incorrect format.</td>
+</tr>
+<tr class="row-even"><td>token-crc-fail</td>
+<td>The checksum was incorrect.</td>
+</tr>
+<tr class="row-odd"><td>token-time-syntax-error</td>
+<td>Could not parse the timestamp.</td>
+</tr>
+<tr class="row-even"><td>token-premature</td>
+<td>The token has a timestamp in the future.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.jason">
+<span id="toolcall-jason-module"></span><h2>toolcall.jason module<a class="headerlink" href="#module-toolcall.jason" title="Permalink to this headline">¶</a></h2>
+<p>Helper module to send json encoded data from Python.
+(the misspelling is intentional ;-)</p>
+<dl class="class">
+<dt id="toolcall.jason.DkJSONEncoder">
+<em class="property">class </em><code class="descclassname">toolcall.jason.</code><code class="descname">DkJSONEncoder</code><span class="sig-paren">(</span><em>skipkeys=False</em>, <em>ensure_ascii=True</em>, <em>check_circular=True</em>, <em>allow_nan=True</em>, <em>sort_keys=False</em>, <em>indent=None</em>, <em>separators=None</em>, <em>encoding='utf-8'</em>, <em>default=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#DkJSONEncoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.DkJSONEncoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">json.encoder.JSONEncoder</span></code></p>
+<p>Handle special cases, like Decimal…</p>
+<dl class="method">
+<dt id="toolcall.jason.DkJSONEncoder.default">
+<code class="descname">default</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#DkJSONEncoder.default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.DkJSONEncoder.default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement this method in a subclass such that it returns
+a serializable object for <code class="docutils literal notranslate"><span class="pre">o</span></code>, or calls the base implementation
+(to raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>).</p>
+<p>For example, to support arbitrary iterators, you could
+implement default like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">iterable</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="c1"># Let the base class default method raise the TypeError</span>
+    <span class="k">return</span> <span class="n">JSONEncoder</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.dump2">
+<code class="descclassname">toolcall.jason.</code><code class="descname">dump2</code><span class="sig-paren">(</span><em>val</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#dump2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.dump2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.dumps">
+<code class="descclassname">toolcall.jason.</code><code class="descname">dumps</code><span class="sig-paren">(</span><em>val</em>, <em>indent=4</em>, <em>sort_keys=True</em>, <em>cls=&lt;class 'toolcall.jason.DkJSONEncoder'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#dumps"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.dumps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dump json value, using our special encoder class.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.json_eval">
+<code class="descclassname">toolcall.jason.</code><code class="descname">json_eval</code><span class="sig-paren">(</span><em>txt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#json_eval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.json_eval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Un-serialize json value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.jsonname">
+<code class="descclassname">toolcall.jason.</code><code class="descname">jsonname</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#jsonname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.jsonname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the string in val to a valid json field name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.jsonp">
+<code class="descclassname">toolcall.jason.</code><code class="descname">jsonp</code><span class="sig-paren">(</span><em>callback</em>, <em>val</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#jsonp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.jsonp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialization with json callback.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.jsonval">
+<code class="descclassname">toolcall.jason.</code><code class="descname">jsonval</code><span class="sig-paren">(</span><em>val</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#jsonval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.jsonval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize val to a json HTTP response.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.loads">
+<code class="descclassname">toolcall.jason.</code><code class="descname">loads</code><span class="sig-paren">(</span><em>txt</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#loads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.loads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.obj_decoder">
+<code class="descclassname">toolcall.jason.</code><code class="descname">obj_decoder</code><span class="sig-paren">(</span><em>pairs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#obj_decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.obj_decoder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jason.response">
+<code class="descclassname">toolcall.jason.</code><code class="descname">response</code><span class="sig-paren">(</span><em>request</em>, <em>val</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jason.html#response"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jason.response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a json or jsonp response.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.jsondecoder">
+<span id="toolcall-jsondecoder-module"></span><h2>toolcall.jsondecoder module<a class="headerlink" href="#module-toolcall.jsondecoder" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="toolcall.jsondecoder.ISO8601Decoder">
+<em class="property">class </em><code class="descclassname">toolcall.jsondecoder.</code><code class="descname">ISO8601Decoder</code><span class="sig-paren">(</span><em>encoding=None</em>, <em>object_hook=None</em>, <em>parse_float=None</em>, <em>parse_int=None</em>, <em>parse_constant=None</em>, <em>strict=True</em>, <em>object_pairs_hook=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jsondecoder.html#ISO8601Decoder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jsondecoder.ISO8601Decoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">json.decoder.JSONDecoder</span></code></p>
+<dl class="attribute">
+<dt id="toolcall.jsondecoder.ISO8601Decoder.MAYBE_DATE">
+<code class="descname">MAYBE_DATE</code><em class="property"> = &lt;_sre.SRE_Pattern object&gt;</em><a class="headerlink" href="#toolcall.jsondecoder.ISO8601Decoder.MAYBE_DATE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="toolcall.jsondecoder.ISO8601Decoder.convert">
+<code class="descname">convert</code><span class="sig-paren">(</span><em>val</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jsondecoder.html#ISO8601Decoder.convert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jsondecoder.ISO8601Decoder.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a single value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="toolcall.jsondecoder.ISO8601Decoder.objhook">
+<code class="descname">objhook</code><span class="sig-paren">(</span><em>attrs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jsondecoder.html#ISO8601Decoder.objhook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jsondecoder.ISO8601Decoder.objhook" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.jsondecoder.loads">
+<code class="descclassname">toolcall.jsondecoder.</code><code class="descname">loads</code><span class="sig-paren">(</span><em>txt</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/jsondecoder.html#loads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.jsondecoder.loads" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.message">
+<span id="toolcall-message-module"></span><h2>toolcall.message module<a class="headerlink" href="#module-toolcall.message" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="toolcall.message.Message">
+<em class="property">class </em><code class="descclassname">toolcall.message.</code><code class="descname">Message</code><span class="sig-paren">(</span><em>kind</em>, <em>token</em>, <em>**data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/message.html#Message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.message.Message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Convenience class that holds message data and can convert it to json.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.message.ServerError">
+<code class="descclassname">toolcall.message.</code><code class="descname">ServerError</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/message.html#ServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.message.ServerError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a 500 response with a json encoded message.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.message.SuccessResponse">
+<code class="descclassname">toolcall.message.</code><code class="descname">SuccessResponse</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/message.html#SuccessResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.message.SuccessResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a 200 response with a json encoded message.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.message.UnautorizedResponse">
+<code class="descclassname">toolcall.message.</code><code class="descname">UnautorizedResponse</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/message.html#UnautorizedResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.message.UnautorizedResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a 401 response with a json encoded error message.
+Also sets the <cite>WWW-Authenticate</cite> header, giving an appropriate
+url for users to restart the process (TOOLCALL_RENEW_TOKEN_URL).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.toolcall_exceptions">
+<span id="toolcall-toolcall-exceptions-module"></span><h2>toolcall.toolcall_exceptions module<a class="headerlink" href="#module-toolcall.toolcall_exceptions" title="Permalink to this headline">¶</a></h2>
+<p>Toolcall exception hierarchy.</p>
+<dl class="exception">
+<dt id="toolcall.toolcall_exceptions.ToolcallException">
+<em class="property">exception </em><code class="descclassname">toolcall.toolcall_exceptions.</code><code class="descname">ToolcallException</code><a class="reference internal" href="_modules/toolcall/toolcall_exceptions.html#ToolcallException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolcall_exceptions.ToolcallException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></p>
+<p>Toolcall exception base class.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="toolcall.toolcall_exceptions.ToolcallInvalidResponse">
+<em class="property">exception </em><code class="descclassname">toolcall.toolcall_exceptions.</code><code class="descname">ToolcallInvalidResponse</code><a class="reference internal" href="_modules/toolcall/toolcall_exceptions.html#ToolcallInvalidResponse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolcall_exceptions.ToolcallInvalidResponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#toolcall.toolcall_exceptions.ToolcallException" title="toolcall.toolcall_exceptions.ToolcallException"><code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.toolcall_exceptions.ToolcallException</span></code></a></p>
+<p>Something other than a 200 OK response.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="toolcall.toolcall_exceptions.ToolcallJSonDecodeError">
+<em class="property">exception </em><code class="descclassname">toolcall.toolcall_exceptions.</code><code class="descname">ToolcallJSonDecodeError</code><a class="reference internal" href="_modules/toolcall/toolcall_exceptions.html#ToolcallJSonDecodeError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolcall_exceptions.ToolcallJSonDecodeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#toolcall.toolcall_exceptions.ToolcallException" title="toolcall.toolcall_exceptions.ToolcallException"><code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.toolcall_exceptions.ToolcallException</span></code></a></p>
+<p>Couldn’t decode json value.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="toolcall.toolcall_exceptions.ToolcallMessageException">
+<em class="property">exception </em><code class="descclassname">toolcall.toolcall_exceptions.</code><code class="descname">ToolcallMessageException</code><a class="reference internal" href="_modules/toolcall/toolcall_exceptions.html#ToolcallMessageException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolcall_exceptions.ToolcallMessageException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#toolcall.toolcall_exceptions.ToolcallException" title="toolcall.toolcall_exceptions.ToolcallException"><code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.toolcall_exceptions.ToolcallException</span></code></a></p>
+<p>Generic message error.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="toolcall.toolcall_exceptions.ToolcallResultException">
+<em class="property">exception </em><code class="descclassname">toolcall.toolcall_exceptions.</code><code class="descname">ToolcallResultException</code><a class="reference internal" href="_modules/toolcall/toolcall_exceptions.html#ToolcallResultException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolcall_exceptions.ToolcallResultException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#toolcall.toolcall_exceptions.ToolcallMessageException" title="toolcall.toolcall_exceptions.ToolcallMessageException"><code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.toolcall_exceptions.ToolcallMessageException</span></code></a></p>
+<p>Something is wrong with the result.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.toolresult">
+<span id="toolcall-toolresult-module"></span><h2>toolcall.toolresult module<a class="headerlink" href="#module-toolcall.toolresult" title="Permalink to this headline">¶</a></h2>
+<p>Base level handling of results from toolcall.</p>
+<dl class="function">
+<dt id="toolcall.toolresult.fetch_result_token">
+<code class="descclassname">toolcall.toolresult.</code><code class="descname">fetch_result_token</code><span class="sig-paren">(</span><em>client</em>, <em>token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/toolresult.html#fetch_result_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolresult.fetch_result_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return validated data from toolcall result token.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.toolresult.validate_message">
+<code class="descclassname">toolcall.toolresult.</code><code class="descname">validate_message</code><span class="sig-paren">(</span><em>m</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/toolresult.html#validate_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolresult.validate_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate message structure.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.toolresult.validate_result_data">
+<code class="descclassname">toolcall.toolresult.</code><code class="descname">validate_result_data</code><span class="sig-paren">(</span><em>r</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/toolresult.html#validate_result_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.toolresult.validate_result_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the structure <cite>r</cite> as a valid result.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall.urls">
+<span id="toolcall-urls-module"></span><h2>toolcall.urls module<a class="headerlink" href="#module-toolcall.urls" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#module-toolcall" title="toolcall"><code class="xref py py-mod docutils literal notranslate"><span class="pre">toolcall</span></code></a> urls.</p>
+</div>
+<div class="section" id="module-toolcall.views">
+<span id="toolcall-views-module"></span><h2>toolcall.views module<a class="headerlink" href="#module-toolcall.views" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#module-toolcall" title="toolcall"><code class="xref py py-mod docutils literal notranslate"><span class="pre">toolcall</span></code></a> views.</p>
+<dl class="function">
+<dt id="toolcall.views.api_definition">
+<code class="descclassname">toolcall.views.</code><code class="descname">api_definition</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/views.html#api_definition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.views.api_definition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="toolcall.views.create_token">
+<code class="descclassname">toolcall.views.</code><code class="descname">create_token</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/views.html#create_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.views.create_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Debug helper view.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Argument</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>timeout</td>
+<td>Number of seconds to keep token alive (default=6).</td>
+</tr>
+<tr class="row-odd"><td>url</td>
+<td>The url to redirect to.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.views.fetch_token">
+<code class="descclassname">toolcall.views.</code><code class="descname">fetch_token</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/views.html#fetch_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.views.fetch_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the token from the request, fetch and remove the token’s value
+from Redis, and return the value to the client.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="toolcall.views.home">
+<code class="descclassname">toolcall.views.</code><code class="descname">home</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/views.html#home"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.views.home" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="toolcall.views.receive_result">
+<code class="descclassname">toolcall.views.</code><code class="descname">receive_result</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/toolcall/views.html#receive_result"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#toolcall.views.receive_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is toolcall informing us that there is a result pending by
+sending an access token which we can exchange for an actual
+result through our side-channel (this was originally a redirect
+of the candidate after end-of-assessment).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-toolcall">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-toolcall" title="Permalink to this headline">¶</a></h2>
+<p>The toolcall app.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">toolcall package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-toolcall.admin">toolcall.admin module</a></li>
+<li><a class="reference internal" href="#module-toolcall.api">toolcall.api module</a></li>
+<li><a class="reference internal" href="#module-toolcall.apiutils">toolcall.apiutils module</a></li>
+<li><a class="reference internal" href="#module-toolcall.apps">toolcall.apps module</a></li>
+<li><a class="reference internal" href="#module-toolcall.auth_backend">toolcall.auth_backend module</a></li>
+<li><a class="reference internal" href="#module-toolcall.defaults">toolcall.defaults module</a></li>
+<li><a class="reference internal" href="#module-toolcall.dkhttp">toolcall.dkhttp module</a></li>
+<li><a class="reference internal" href="#module-toolcall.dktoken">toolcall.dktoken module</a></li>
+<li><a class="reference internal" href="#module-toolcall.jason">toolcall.jason module</a></li>
+<li><a class="reference internal" href="#module-toolcall.jsondecoder">toolcall.jsondecoder module</a></li>
+<li><a class="reference internal" href="#module-toolcall.message">toolcall.message module</a></li>
+<li><a class="reference internal" href="#module-toolcall.toolcall_exceptions">toolcall.toolcall_exceptions module</a></li>
+<li><a class="reference internal" href="#module-toolcall.toolresult">toolcall.toolresult module</a></li>
+<li><a class="reference internal" href="#module-toolcall.urls">toolcall.urls module</a></li>
+<li><a class="reference internal" href="#module-toolcall.views">toolcall.views module</a></li>
+<li><a class="reference internal" href="#module-toolcall">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">toolcall - call an external</a></li>
+      <li>Next: <a href="toolcall.toolimplementor.html" title="next chapter">toolcall.toolimplementor package</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/toolcall.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018 Bjorn Pettersen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/toolcall.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

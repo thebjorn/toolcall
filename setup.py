@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""toolcall - short description
+"""toolcall - call an external tool
 """
 
 classifiers = """\
