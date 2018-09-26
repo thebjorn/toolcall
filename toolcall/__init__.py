@@ -2,3 +2,4 @@
 
 """The toolcall app.
 """
+__version__ = '2.0.1'
