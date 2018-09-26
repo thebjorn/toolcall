@@ -1,6 +1,6 @@
 
 
-toolcall - call an external
+toolcall - call an external tool
 ==================================================
 
 This is a sample Django package that includes both the tool-user part
