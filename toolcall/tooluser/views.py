@@ -70,6 +70,7 @@ def start_tool(request, slug):
         "person", token,
         firstName=usr.first_name,
         lastName=usr.last_name,
+        email=usr.email,
         exam=tool.slug,
         persnr=generate_unique_id(usr),
         extra_time=False,  # usr.has_perm(...)

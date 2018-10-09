@@ -31,7 +31,7 @@ class ToolCallLogAdmin(admin.TabularInline):
 class ToolCallAdmin(admin.ModelAdmin):
     list_display = """tool user started ended status""".split()
     inlines = [ToolCallLogAdmin]
-
+    raw_id_fields = ['user']
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(ToolCall, ToolCallAdmin)
