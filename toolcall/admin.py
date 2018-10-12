@@ -14,7 +14,7 @@ class ToolInlineAdmin(admin.TabularInline):
 
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = """id  
+    list_display = """id  name
                       receive_start_token_url
                       receive_result_token_url
                       """.split()

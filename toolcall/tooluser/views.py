@@ -1,14 +1,26 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from django import shortcuts as dj, template
+from django import shortcuts as dj, template, http
 from django.contrib.auth.decorators import login_required
 from dkredis import dkredis
 
 import toolcall.message
 from toolcall import defaults
 from toolcall.dktoken import Token
-from toolcall.models import Tool, ToolCall
+from toolcall.models import Tool, ToolCall, Client
+
+
+@login_required
+def list_tools(request):
+    return dj.render_to_response(
+        'toolcall/tooluser/list-tools.html',
+        template.Context({
+            "clients": Client.objects.all().order_by('name')
+        })
+    )
+    
+
 
 
 # def encrypt_user(usr):
@@ -95,3 +107,37 @@ def start_tool(request, slug):
             "request": request
         })
     )
+
+
+@login_required
+def start_tool_redirect(request, slug):
+    """User clicked on start-tool button.
+    """
+    tool = dj.get_object_or_404(Tool, slug=slug)
+    progress = fetch_progress_record(request.user, tool)
+
+    token = Token()
+
+    url = tool.client.receive_start_token_url
+    url += '?access_token=%s' % token
+
+    usr = request.user
+    value = toolcall.message.Message(
+        "person", token,
+        firstName=usr.first_name,
+        lastName=usr.last_name,
+        email=usr.email,
+        exam=tool.slug,
+        persnr=generate_unique_id(usr),
+        extra_time=False,  # usr.has_perm(...)
+        exam_kind='start',
+
+        system=progress.sign()
+    )
+
+    dkredis.set_pyval('TOKEN-%s' % token,
+                      value,
+                      defaults.TOOLCALL_TOKEN_TIMEOUT_SECS)
+
+    progress.set_status('start-tk-sent')
+    return http.HttpResponseRedirect(url)
