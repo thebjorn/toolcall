@@ -113,3 +113,4 @@ tests/resget.bat
 tests/resultget.py
 toolcall.svg
 .vscode/settings.json
+/.dkdeps
