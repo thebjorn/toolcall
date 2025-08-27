@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>toolcall.templatetags.toolcall_tags &#8212; toolcall 2.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../../_static/documentation_options.js?v=f5cff4aa"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for toolcall.templatetags.toolcall_tags</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">template</span>
+
+
+<span class="n">register</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">Library</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="start_toolcall">
+<a class="viewcode-back" href="../../../toolcall.templatetags.html#toolcall.templatetags.toolcall_tags.start_toolcall">[docs]</a>
+<span class="nd">@register</span><span class="o">.</span><span class="n">simple_tag</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">start_toolcall</span><span class="p">(</span><span class="n">tool</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tool</span><span class="o">.</span><span class="n">slug</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">redirect_url</span> <span class="o">=</span> <span class="s1">&#39;https://afr.norsktest.no/toolcall/end-user-test/tools/&#39;</span>
+    <span class="n">icon</span> <span class="o">=</span> <span class="s1">&#39;&lt;img src=&quot;</span><span class="si">%s</span><span class="s1">&quot;&gt;&lt;br&gt;&#39;</span> <span class="o">%</span> <span class="n">tool</span><span class="o">.</span><span class="n">icon</span> <span class="k">if</span> <span class="n">tool</span><span class="o">.</span><span class="n">icon</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">tool</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="n">tool</span><span class="o">.</span><span class="n">slug</span>
+    <span class="n">startbtn</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &lt;div style=&quot;display:inline-flex;flex-direction:column;&quot;&gt;</span>
+<span class="s2">    &lt;button client=&#39;</span><span class="si">{tool.client.name}</span><span class="s2">&#39;</span>
+<span class="s2">            tool=&#39;</span><span class="si">{tool.slug}</span><span class="s2">&#39;</span>
+<span class="s2">            onclick=&#39;window.open(&quot;</span><span class="si">{starturl}</span><span class="s2">&quot;, &quot;</span><span class="si">{tool.client.name}</span><span class="s2">&quot;, &quot;width=1024,height=768,scroll=1,resize=1&quot;);return false;&#39; </span>
+<span class="s2">            class=&#39;btn btn-default&#39;&gt;</span>
+<span class="s2">        </span><span class="si">{icon}</span>
+<span class="s2">        </span><span class="si">{name}</span>
+<span class="s2">    &lt;/button&gt;</span>
+<span class="s2">    &lt;small&gt;</span><span class="si">{tool.description}</span><span class="s2">&lt;/small&gt;</span>
+<span class="s2">    &lt;/div&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">tool</span><span class="o">=</span><span class="n">tool</span><span class="p">,</span>
+        <span class="n">icon</span><span class="o">=</span><span class="n">icon</span><span class="p">,</span> 
+        <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> 
+        <span class="n">starturl</span><span class="o">=</span><span class="n">redirect_url</span> <span class="o">+</span> <span class="n">tool</span><span class="o">.</span><span class="n">slug</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">startbtn</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">toolcall</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../toolcall.html">toolcall package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2018 Bjorn Pettersen.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

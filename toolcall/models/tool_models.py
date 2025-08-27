@@ -40,32 +40,32 @@ class Tool(models.Model):
     """Available tools.
     """
     #: the client the tool belongs to
-    client = models.ForeignKey(Client)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
     slug = models.SlugField(
         unique=True,
-        help_text=u"This is the 'id' we send to the tool provider to start"
-                  u"this tool.")
+        help_text="This is the 'id' we send to the tool provider to start"
+                  "this tool.")
     name = models.CharField(
         max_length=100,
-        help_text=u"The end-user visible name of the tool.")
+        help_text="The end-user visible name of the tool.")
     description = models.CharField(
         max_length=255, null=True, blank=True,
-        help_text=u"A short, end-user visible, description of the tool.")
+        help_text="A short, end-user visible, description of the tool.")
     icon = models.URLField(
         null=True, blank=True,
-        help_text=u"The uri of an end-user visible icon representing the Tool.")
+        help_text="The uri of an end-user visible icon representing the Tool.")
 
     restartable = models.BooleanField(default=False)
     restart_duration_minutes = models.PositiveIntegerField(
       null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
 class ToolCall(models.Model):
-    tool = models.ForeignKey(Tool)
-    user = models.ForeignKey(User)
+    tool = models.ForeignKey(Tool, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     started = models.DateTimeField(null=True, blank=True)
     ended = models.DateTimeField(null=True, blank=True)
     status = models.CharField(
@@ -74,7 +74,7 @@ class ToolCall(models.Model):
         default='initial'
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return "{self.tool.name} {self.user.username} {self.started} {self.status}".format(
             self=self
         )
@@ -102,11 +102,11 @@ class ToolCall(models.Model):
 
     def set_status(self, status):
         if status not in legal_transitions.transitions[self.status]:
-            print """
+            print("""
                 OOPS..: %s -> %s is not a legal transition
                 (legal transitions: %r)
             """ % (self.status, status,
-                   legal_transitions.transitions[self.status])
+                   legal_transitions.transitions[self.status]))
         self.status = status
         self.save()
 
@@ -126,12 +126,12 @@ class ToolCall(models.Model):
 
 
 class ToolCallLog(models.Model):
-    toolcall = models.ForeignKey(ToolCall, related_name='logs')
+    toolcall = models.ForeignKey(ToolCall, related_name='logs', on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=18)
     details = models.CharField(max_length=255, null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s : %s" % (self.timestamp, self.status)
 
     class Meta:
@@ -140,7 +140,7 @@ class ToolCallLog(models.Model):
 
 # not used here..
 class ToolcallResult(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     toolcall_participant_id = models.CharField(
         max_length=150, blank=True, null=True)
     exam = models.CharField(max_length=55)
@@ -151,7 +151,7 @@ class ToolcallResult(models.Model):
     system = models.CharField(max_length=3, null=True)
     exam_type = models.CharField(max_length=20, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.toolcall_participant_id
 
     def __repr__(self):

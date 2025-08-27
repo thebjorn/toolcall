@@ -90,15 +90,15 @@ def run_my_tool(request):
     url = SERVER_ROOT_URL + RESULT_TOKEN_URL
     url += '?access_token=' + token
     url += '&client=testclient'  # must match Client.name
-    print "REDIRECTING TO: ", url
+    print("REDIRECTING TO: ", url)
 
     return http.HttpResponseRedirect(url)
 
 
 def send_result_data(request):
-    print "in send-result-data:", request.GET
+    print("in send-result-data:", request.GET)
     result = dkredis.pop_pyval("CLIENT-TOKEN-" + request.GET['access_token'])
-    print "CLIENT_RESULT:", result
+    print("CLIENT_RESULT:", result)
     return toolcall.message.SuccessResponse(
         result
     )

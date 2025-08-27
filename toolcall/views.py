@@ -44,7 +44,7 @@ def fetch_token(request):
         # log('found token:', token)
         pyval = dkredis.pop_pyval('TOKEN-%s' % token)
         # log('found value in redis:', pyval)
-        print "PYVAL:", pyval
+        print("PYVAL:", pyval)
 
         if pyval is None:
             return toolcall.message.UnautorizedResponse(
@@ -92,7 +92,7 @@ def receive_result(request):
         result = toolresult.fetch_result_token(client, token)
         progress = ToolCall.get(result.data.system)
         progress.finished_ok()
-        print "RECEIVED:RESULT:", result
+        print("RECEIVED:RESULT:", result)
         # ToolcallResult.store(result)
         return toolcall.message.SuccessResponse(toolcall.message.Message(
             "ok", token

@@ -111,12 +111,12 @@ if True:  # settings.DEBUG:
 
         known_states = {s[0] for s in states}
         if known_states ^ allstates:
-            print "states vs tr.states:", known_states ^ allstates
+            print("states vs tr.states:", known_states ^ allstates)
             assert {s[0] for s in states} == allstates
-        print "lhs - rhs:", lhs - rhs
+        print("lhs - rhs:", lhs - rhs)
         assert lhs - rhs == {'initial'}
-        print "rhs - lhs:", rhs - lhs
-        print allstates
+        print("rhs - lhs:", rhs - lhs)
+        print(allstates)
 
     # _validate_state_transitions(transitions, states)
 

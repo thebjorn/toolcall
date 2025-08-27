@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Build report</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.13.1/cdn/themes/light.css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.13.1/cdn/themes/dark.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');"
+    />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.13.1/cdn/shoelace-autoloader.js"></script>
+
+    <link rel="stylesheet" href="https://kit.fontawesome.com/9378b72a97.css" crossorigin="anonymous">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/sunburst.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <style>
+        :root {
+            
+            --border-color: #eee;
+            --run-data-font-size: 10px;
+            --size: 12px;
+            --green: var(--sl-color-success-500);
+            --good-color: var(--sl-color-success-500);
+            --red: var(--sl-color-success-500);
+            --bad-color: var(--sl-color-danger-500);
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: var(--sl-font-sans);
+            font-size: var(--sl-font-size-medium);
+            line-height: var(--sl-line-height-normal);
+            padding: 1rem;
+        }
+        h1 > tt {
+            font-weight: normal;
+            border: 1px solid #adadad;
+            padding: 0.25rem 0.5rem;
+        }
+        .top {
+            font-size: 50%;
+            vertical-align: .3em;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            padding: 0.25rem 0.5rem;
+            color: #888;
+        }
+        iframe { 
+            border: 1px solid #ccc;
+            width: 100%;
+            height: calc(100vh - 250px);
+        }
+        .collapsible {
+            /* border: 1px solid #ccc; */
+            margin-bottom: 1rem;
+
+            > iframe {
+                max-height: 100vh;
+                transition: all 400ms ease-out;
+                opacity: 1;
+            }
+
+            > h3 {
+                margin: 0;
+                padding: 1rem;
+                border: 1px solid #ccc;
+                border-bottom: none;
+                background-color: #eee;
+                cursor: pointer;
+            }
+
+        }
+
+        .collapse-toggle {
+            width: 1.5rem;
+            height: 1.5rem;
+            text-align: center;
+            padding: 0;
+            vertical-align: text-bottom;
+        }
+        
+        .collapsible[closed] > iframe {
+            max-height: 0;
+            border: none;
+            opacity: 0;
+        }
+
+        .collapsible[closed] > h3 {
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* left navigation */
+        nav.main-index {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 10rem;
+            float: left;
+
+            & a {
+                color: var(--sl-color-blue-500);
+                text-decoration: none;
+                font-size: var(--sl-font-size-small);;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            & ul {
+                padding-left: var(--sl-spacing-medium);
+            }
+            & h2 {
+                font-size: var(--sl-font-size-x-large);
+                color: var(--sl-color-gray-700);
+                border-bottom: 1px dotted var(--sl-color-gray-300);
+            }
+        }
+
+        main {
+            /* margin-left: 12rem; */
+            margin-bottom: 50vh;
+
+            > h2 {
+                font-size: 1.5rem;
+                color: #4d3b66;
+                border-bottom: 1px dotted #666;
+            }
+        }
+        
+        .output-link {
+            float: right;
+            color: #888;
+            font-size: 80%;
+            margin-right: 1rem;
+        }
+
+        .graphs {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            width: 37%;
+            margin-left: 12rem;
+        }
+
+        .packages {
+            height: 100vh
+        }
+
+        .packages .cmdline {
+            height: 22px
+        }
+
+        .packages .package-box {
+            height: calc(100% - 40px)
+        }
+
+        /* this is the green project status box */
+        .Package {
+            display: inline-grid;
+            grid-template-areas:"icon         title    " "icon         rstats   " "value        pstats   ";
+            grid-template-columns:45px auto;
+            grid-column-gap: 6px
+        }
+
+        .code-quality {
+            grid-area: cq;
+            text-align: right
+        }
+
+        .avatar-link {
+            display: block;
+            grid-area: icon;
+            align-self: center
+        }
+
+        .title {
+            grid-area: title;
+            align-self: start
+        }
+
+        .project-data {
+            grid-area: pstats;
+            align-self: end;
+            justify-self: end
+        }
+
+        .run-data-box {
+            grid-area: rstats
+        }
+
+        .status {
+            grid-area: value;
+            text-align: end
+        }
+
+        .score {
+            color: #222
+        }
+
+        .failed {
+            background-color: rgba(255, 129, 90, .5098039216)
+        }
+
+        .value:after {
+            color: #444
+        }
+
+        .dark .value:after {
+            color: #eee
+        }
+
+        .duration-box {
+            color: #222
+        }
+
+        .dark .duration-box {
+            color: #eee
+        }
+
+        button {
+            border: 1px solid #999;
+            border-radius: 3px;
+            margin-right: 2px
+        }
+
+        button.active {
+            background-color: #666;
+            border-color: #666;
+            color: #fff
+        }
+
+        button.active.asc::before {
+            content: "+"
+        }
+
+        button.active.desc::before {
+            content: "-"
+        }
+
+        .Package {
+            border: 1px solid #666;
+            margin: 2px;
+            padding: 0 6px 3px 2px;
+            min-width: 210px;
+            transition: transform .2s
+        }
+
+        .Package h2, .Package h3, .Package h4 {
+            margin: 0;
+            line-height: 1
+        }
+
+        .Package h2 {
+            font-size: 16px
+        }
+
+        .Package h3 {
+            font-size: 14px
+        }
+
+        .Package:hover {
+            transform: scale(1.5)
+        }
+
+        .pipeline {
+            border: 1px solid #eee;
+            border-radius: 2px;
+            font-family: Verdana, sans-serif;
+            font-size: calc(2px + var(--size));
+            line-height: 1;
+            display: inline-block;
+            height: calc(2px + var(--size));
+            padding: 0;
+            text-align: center;
+            color: #fff
+        }
+
+        .pipeline.success {
+            color: #fff;
+            border: none
+        }
+
+        .pipeline.failed {
+            color: red;
+            background-color: #fff
+        }
+
+        .score {
+            text-decoration: none;
+            font-size: 23px;
+            line-height: 1;
+            text-align: center
+        }
+
+        .avatar {
+            max-width: 39px;
+            max-height: 46px;
+            height: 100%;
+            width: 100%;
+            image-rendering: -webkit-optimize-contrast
+        }
+
+        .small .Package {
+            grid-template-areas:"icon   title  title" "icon   rstats value";
+            grid-template-columns:38px 1fr 32px
+        }
+
+        .small .code-quality {
+            display: none
+        }
+
+        .small .project-data {
+            display: none
+        }
+
+        .small tfoot {
+            display: none
+        }
+
+        .small .sprkline {
+            display: none
+        }
+
+        .small .CC {
+            display: none
+        }
+
+        .small .LOC {
+            display: none
+        }
+
+        .small .run-data-box tr {
+            display: none
+        }
+
+        .small .run-data-box tbody tr:first-child {
+            display: table-row
+        }
+
+        .small .score {
+            font-size: 16px
+        }
+
+        .small .avatar {
+            height: 38px;
+            max-width: 38px
+        }
+
+        .duration {
+            margin-right: 2ex
+        }
+
+        .value-list {
+            display: inline-grid;
+            grid-template-columns:1fr 1fr;
+            grid-gap: 1px 1ex
+        }
+
+        .value-label {
+            font-weight: bold;
+            color: #666
+        }
+
+        .value-label:after {
+            content: ":"
+        }
+
+        .test-data {
+            width: 100px;
+            display: inline-block
+        }
+
+        .test-data > div {
+            float: left;
+            height: 15px
+        }
+
+        .content {
+            padding-left: 10px
+        }
+
+        .content > h3 {
+            display: inline-block
+        }
+
+        .run-data-box table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px
+        }
+
+        .run-data-box td {
+            text-align: center;
+            border: 1px solid var(--border-color);
+            min-width: 2em
+        }
+
+        .run-data-box th {
+            text-align: center;
+            border: 1px solid var(--border-color)
+        }
+
+        .run-data-box tfoot td {
+            border: none
+        }
+
+        .project-data .value {
+            font-size: 12px;
+            display: inline-block
+        }
+
+        .code-quality {
+            font-size: 10px
+        }
+
+        .value:after {
+            font-size: 85%;
+            font-variant: small-caps;
+            margin-left: 1px
+        }
+
+        .LOC:after {
+            content: "loc"
+        }
+
+        .LOC.kloc:after {
+            content: "kloc"
+        }
+
+        .MI:after {
+            content: "MI"
+        }
+
+        .CC:after {
+            content: "CC"
+        }
+
+        .pylint-box:after {
+            content: "lnt"
+        }
+
+        .coverage:after {
+            content: "coverage"
+        }
+
+        .content {
+            text-align: right;
+            line-height: 0
+        }
+
+        .content + .content {
+            border-top: 1px dotted #999
+        }
+
+        .green {
+            background-color: var(--green);
+            color: #fff
+        }
+
+        .red {
+            background-color: var(--red);
+            color: #fff
+        }
+
+        span.label {
+            color: #999;
+            font-size: 90%
+        }
+
+        .no-results {
+            background-color: #ededed
+        }
+
+        sl-details.plus-minus-icons::part(summary-icon) {
+            /* Disable the expand/collapse animation */
+            rotate: none;
+        }
+
+        sl-details.report::part(content) {
+            padding: 0;
+        }
+
+        .collapsible-header {
+            font-size: var(--sl-font-size-normal);
+        }
+        .tool-output {
+            font-family: var(--sl-font-mono);
+            white-space: nowrap;
+            line-height: var(--sl-line-height-dense);
+            font-size: var(--sl-font-size-small);
+        }
+        .selected {
+            background-color: yellow;
+            outline: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- theme switcher -->
+        <sl-switch checked id="theme-switcher" style="float:right">
+            <sl-icon id="theme-icon-moon" name="moon-fill"></sl-icon>
+            <sl-icon style="display:none" id="theme-icon-sun" name="sun-fill"></sl-icon>
+        </sl-switch>
+    </header>
+
+    <header>
+        <h1 style="margin-bottom: 0">
+            <a href="https://gitlab.com/norsktest/toolcall" style="text-decoration:none">
+                <img alt="" src="http://projectstatus/icons/toolcall.png" 
+                    style="width: 64px; height: 64px; vertical-align:middle">
+            </a>
+            <tt>toolcall</tt>
+        </h1>
+        <h2 style="margin:0;font-weight:var(--sl-font-weight-400)">Build report</h2>
+    </header>
+
+<main>
+
+    <sl-tab-group>
+        <sl-tab slot="nav" panel="python-pytest" active>pytest</sl-tab>
+        
+
+        <sl-tab slot="nav" panel="python-coverage">coverage</sl-tab>
+
+        <sl-tab slot="nav" panel="python-pep8">PEP8</sl-tab>
+        <sl-tab slot="nav" panel="python-pylint" active>pylint</sl-tab>
+
+        <sl-tab-panel name="python-pep8">
+            <!-- textarea style="width:100%" rows="0" -->
+                <div class="tool-output"></div>
+            <!-- /textarea -->
+        </sl-tab-panel>
+
+        <sl-tab-panel name="python-pylint">
+            <iframe id="pylint-frame" src="pylint/index.html" style="width:100%; height:100vh !important"></iframe>
+            <!--textarea style="width:100%" rows="0">
+                
+            </textarea -->
+        </sl-tab-panel>
+
+        <sl-tab-panel name="python-coverage">
+            <iframe src="coverage/htmlcov/index.html"></iframe>
+        </sl-tab-panel>
+
+        <sl-tab-panel name="python-pytest">
+            <iframe src="pytest/index.html"></iframe>
+        </sl-tab-panel>
+
+        
+    </sl-tab-group>
+
+
+</main>
+
+    <script>
+        // const python_metrics = document.querySelector('#python-metrics');
+        // const js_metrics = document.querySelector('#js-metrics');
+
+        window.addEventListener('message', (e) => {
+            console.log(`GOT MESSAGE: ${e.data.frameheight} ${e.data.frameid}`);
+            document.querySelector(e.data.frameid).style.height = `${e.data.frameheight + 25}px`;
+            document.querySelector(e.data.frameid).style.maxHeight = `${e.data.frameheight + 25}px`;
+        });
+
+        const theme_switcher = document.querySelector('#theme-switcher');
+        const theme_icon_moon = document.querySelector('#theme-icon-moon');
+        const theme_icon_sun = document.querySelector('#theme-icon-sun');
+
+        const set_theme = which => {
+            if (which === 'dark') {
+                theme_switcher.checked = true;
+                document.documentElement.classList.remove('sl-theme-light');
+                document.documentElement.classList.add('sl-theme-dark');
+                theme_icon_moon.style.display = 'inline';
+                theme_icon_sun.style.display = 'none';
+            } else {
+                theme_switcher.checked = false;
+                document.documentElement.classList.remove('sl-theme-dark');
+                document.documentElement.classList.add('sl-theme-light');
+                theme_icon_moon.style.display = 'none';
+                theme_icon_sun.style.display = 'inline';
+            }
+        };
+
+        theme_switcher.addEventListener('sl-change', () => {
+            theme_switcher.checked ? set_theme('dark') : set_theme('light');
+        });
+
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            set_theme('dark');
+        } else {
+            set_theme('light');
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            event.matches ? set_theme('dark') : set_theme('light');
+        });
+
+        const selectable = document.querySelectorAll('.selectable');
+        const remove_selected = () => {
+            selectable.forEach(el => el.classList.remove('selected'));
+        };
+        selectable.forEach(item => item.addEventListener('click', e => {
+            remove_selected();
+            e.target.classList.add('selected');
+        }));
+
+        document.querySelector('#c-1').classList.add('selected');
+
+
+    </script>
+</body>
+</html>

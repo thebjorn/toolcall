@@ -5,11 +5,9 @@
 """
 
 classifiers = """\
-Development Status :: 3 - Alpha
+Development Status :: 4 - Beta
 Intended Audience :: Developers
 Programming Language :: Python
-Programming Language :: Python :: 2
-Programming Language :: Python :: 2.7
 Topic :: Software Development :: Libraries
 """
 

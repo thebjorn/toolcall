@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>endpoints &#8212; toolcall 2.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f5cff4aa"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="endpoints">
+<span id="id1"></span><h1>endpoints<a class="headerlink" href="#endpoints" title="Link to this heading">¶</a></h1>
+<section id="server">
+<h2>Server<a class="headerlink" href="#server" title="Link to this heading">¶</a></h2>
+<p>The server has two endpoints. The endpoints are defined in
+toolcall/toolcall-api.yaml and are also available from
+<a class="reference external" href="http://127.0.0.1:8000/.api/toolcall/v2/">http://127.0.0.1:8000/.api/toolcall/v2/</a></p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>the production server is not ready for v2 yet, but this sample
+package does.</p>
+</div>
+<section id="start-data">
+<h3>start_data<a class="headerlink" href="#start-data" title="Link to this heading">¶</a></h3>
+<p>In this sample app it is: <a class="reference external" href="http://localhost:8000/fetch-token/">http://localhost:8000/fetch-token/</a>
+It should be called with the start-data token as a GET parameter
+named <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8000/fetch-token/?access_token=1W6ofOChZt1AS4bdpkbOVKpdptVi0YDB48-UAZXz8PuB06cvNtwoiXBM20
+</pre></div>
+</div>
+</section>
+<section id="result-token">
+<h3>result_token<a class="headerlink" href="#result-token" title="Link to this heading">¶</a></h3>
+<p>In this sample app it is: <a class="reference external" href="http://localhost:8000/result/">http://localhost:8000/result/</a>
+It should be called with the result token as a GET parameter
+named <code class="docutils literal notranslate"><span class="pre">access_token</span></code>, and the client name in a GET parameter
+named <code class="docutils literal notranslate"><span class="pre">client</span></code>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8000/result/?access_token=3525841484&amp;client=testclient
+</pre></div>
+</div>
+</section>
+</section>
+<section id="client">
+<h2>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h2>
+<p>The client has two endpoints. The endpoints are defined in the
+<a class="reference internal" href="toolcall.models.html#toolcall.models.tool_models.Client" title="toolcall.models.tool_models.Client"><code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.models.tool_models.Client</span></code></a> model.</p>
+<section id="receive-start-token-url">
+<h3>receive_start_token_url<a class="headerlink" href="#receive-start-token-url" title="Link to this heading">¶</a></h3>
+<p>Url where we redirect the end user with a token. In the sample client this is:
+<a class="reference external" href="http://localhost:8000/client/start-token/">http://localhost:8000/client/start-token/</a></p>
+</section>
+<section id="receive-result-token-url">
+<h3>receive_result_token_url<a class="headerlink" href="#receive-result-token-url" title="Link to this heading">¶</a></h3>
+<p>Url where we return the result token and expect result data in return.
+In the sample client this is:
+<a class="reference external" href="http://localhost:8000/client/result-token/">http://localhost:8000/client/result-token/</a></p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">toolcall</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="toolcall.html">toolcall package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2018 Bjorn Pettersen.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/endpoints.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

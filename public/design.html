@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Toolcall protocol &#8212; toolcall 2.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f5cff4aa"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="toolcall-protocol">
+<span id="id1"></span><h1>Toolcall protocol<a class="headerlink" href="#toolcall-protocol" title="Link to this heading">¶</a></h1>
+<p>The following actor names are used synonymously:</p>
+<dl class="field-list simple">
+<dt class="field-odd">user/candidate/browser<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The person starting the tool/exam.</p>
+</dd>
+<dt class="field-even">client/tool<span class="colon">:</span></dt>
+<dd class="field-even"><p>The external (to NorskTest) entity that runs the tool.</p>
+</dd>
+<dt class="field-odd">server/NorskTest<span class="colon">:</span></dt>
+<dd class="field-odd"><p>That’s us.</p>
+</dd>
+<dt class="field-even">tool/exam<span class="colon">:</span></dt>
+<dd class="field-even"><p>The “thing” being run (most frequently an exam).</p>
+</dd>
+</dl>
+<img alt="_images/information-flow.jpg" src="_images/information-flow.jpg" />
+<img alt="_images/callsequence.svg" src="_images/callsequence.svg" /><p>The user/browser is indicated in blue, red is server-to-server
+communication over a secure channel (ie. https).</p>
+<ol class="arabic simple">
+<li><p>We authenticate and authorize the Candidate so only candidates
+that have been logged in with us are sent to <code class="docutils literal notranslate"><span class="pre">toolcall</span></code>. We
+generate a unique token and redirect the candidate to an
+url defined in the <a class="reference internal" href="toolcall.models.html#toolcall.models.tool_models.Client" title="toolcall.models.tool_models.Client"><code class="xref py py-class docutils literal notranslate"><span class="pre">toolcall.models.tool_models.Client</span></code></a> model.</p></li>
+<li><p>The client sends a server-to-server GET request over a secure channel.</p></li>
+<li><p>NorskTest returns json-data containing tool start data. The data
+can/is customized to the individual client. The start-data:</p>
+<ol class="loweralpha simple">
+<li><p><strong>must</strong> include a uniqe person reference (the client
+can e.g. use this to adapt the test when the candidate starts
+the second attempt). The person reference is sent back to
+NorskTest in step #6.</p></li>
+<li><p><strong>can</strong> include the name of the candidate (for personalization).</p></li>
+<li><p>etc.</p></li>
+</ol>
+</li>
+<li><p>The client runs the (external) tool and sends a (new) token back
+to NorskTest</p>
+<ol class="loweralpha simple">
+<li><p>This is shown as a redirect in the diagram, meaning that it
+is possible for the candidate to return to the portal (whence
+they started the tool call). This should be a server-to-server
+communication if the user shouldn’t be redirected
+back to NorskTest.</p></li>
+</ol>
+</li>
+<li><p>NorskTest sends a server-to-server GET request over a secure channel.</p></li>
+<li><p>The client returns <a class="reference internal" href="result-data.html#result-data"><span class="std std-ref">result-data</span></a> in json format, containing the unique
+person reference (as received in #3), pass/fail, and a opaque id
+that can be used to track the call after the fact (to support complaint
+processing etc.)</p></li>
+</ol>
+<p>The client ought to be able to validate its own tokens (e.g. by adding
+a checksum).</p>
+<p>The token <strong>must</strong> only be valid for a short period of time, i.e.
+the period between 1 to 2, and 4 to 5, must be short. This will prevent
+a situation where an attacker has a large set of valid tokens that can be
+attacked.</p>
+<p>It <strong>must</strong> only be possible to resolve a token once (to prevent
+replay attacks).</p>
+<p>Tokens ought to be saved (or logged) so it is possible to debug the system
+across the server/client boundary.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible to implement a token transformation (decryption)
+between 1/2 and 4/5 so tokens transmitted over an open channel
+must be encrypted before sending on a secure channel.  This is
+currently not seen as necessary.</p>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">toolcall</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="toolcall.html">toolcall package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2018 Bjorn Pettersen.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/design.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

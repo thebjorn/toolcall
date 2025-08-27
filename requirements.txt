@@ -1,6 +1,6 @@
-django==2.2.24
-requests==2.20.1
-python_dateutil==2.1
+django==3.2.25
+requests
+python_dateutil
 PyYAML
 
 dk==1.0.2
@@ -12,4 +12,4 @@ pytest-cov
 pytest-django
 
 # publishing
-dkfileutils==1.4.2
+dkfileutils

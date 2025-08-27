@@ -8,7 +8,11 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+import collections
+collections.Callable = collections.abc.Callable  # Python 3.10 compat
 import django
+import sys, os
+sys.path.insert(0, os.path.abspath('..'))
 django.setup()
 
 
@@ -28,9 +32,9 @@ import sys, os
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
   'sphinx.ext.autodoc', 
-  'sphinx.ext.intersphinx', 
+  # 'sphinx.ext.intersphinx', 
   'sphinx.ext.todo', 
-  'sphinx.ext.coverage', 
+  # 'sphinx.ext.coverage', 
   'sphinx.ext.viewcode'
 ]
 
@@ -195,10 +199,10 @@ latex_elements = {
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
-latex_documents = [
-  ('index', 'toolcall.tex', u'toolcall Documentation',
-   u'', 'manual'),
-]
+# latex_documents = [
+#   ('index', 'toolcall.tex', u'toolcall Documentation',
+#    u'', 'manual'),
+# ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
@@ -259,4 +263,4 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/': None}
+# intersphinx_mapping = {'http://docs.python.org/': None}

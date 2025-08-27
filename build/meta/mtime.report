@@ -1,0 +1,41 @@
+{
+    "report": {
+        "created_at": "@datetime:2025-08-27T15:32:17.802384",
+        "modified_at": "@datetime:2025-08-27T15:32:17.802384",
+        "name": "mtime",
+        "package": "toolcall",
+        "value": 1756301529.1060698,
+        "version": "",
+        "digest": "b794c80a2aad3a6c87010f48d4cb9b02",
+        "summary": {},
+        "files": {
+            "toolcall/__init__.py": 1756291791.2676835,
+            "toolcall/admin.py": 1756291791.2676835,
+            "toolcall/apiutils.py": 1756291791.2681985,
+            "toolcall/apps.py": 1756291791.2681985,
+            "toolcall/auth_backend.py": 1756291791.268708,
+            "toolcall/defaults.py": 1756291791.268708,
+            "toolcall/dkhttp.py": 1756291791.2692294,
+            "toolcall/dktoken.py": 1756291791.2697475,
+            "toolcall/jason.py": 1756291791.2697475,
+            "toolcall/jsondecoder.py": 1756291791.2702699,
+            "toolcall/message.py": 1756291791.2702699,
+            "toolcall/models/__init__.py": 1756291791.2702699,
+            "toolcall/models/legal_transitions.py": 1756301261.3850374,
+            "toolcall/models/tool_models.py": 1756301529.1060698,
+            "toolcall/templatetags/__init__.py": 1756291791.2727828,
+            "toolcall/templatetags/toolcall_tags.py": 1756291791.2737832,
+            "toolcall/toolcall_exceptions.py": 1756291791.274783,
+            "toolcall/toolimplementor/__init__.py": 1756291791.274783,
+            "toolcall/toolimplementor/urls.py": 1756291791.274783,
+            "toolcall/toolimplementor/views.py": 1756301280.8361769,
+            "toolcall/toolresult.py": 1756291791.2757833,
+            "toolcall/tooluser/__init__.py": 1756291791.2757833,
+            "toolcall/tooluser/urls.py": 1756291791.2767825,
+            "toolcall/tooluser/views.py": 1756291791.2767825,
+            "toolcall/urls.py": 1756291791.277375,
+            "toolcall/views.py": 1756301244.6555133
+        },
+        "details": {}
+    }
+}

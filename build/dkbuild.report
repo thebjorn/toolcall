@@ -1,0 +1,22 @@
+{
+    "report": {
+        "created_at": "@datetime:2025-08-27T15:32:25.957384",
+        "modified_at": "@datetime:2025-08-27T12:47:16+02:00",
+        "name": "testpackage",
+        "package": "toolcall",
+        "value": 0.0,
+        "version": "",
+        "digest": "b794c80a2aad3a6c87010f48d4cb9b02",
+        "summary": {
+            "coverage": 0.0
+        },
+        "files": {},
+        "details": {
+            "loc": 1697,
+            "mtime": 1756301529.1060698,
+            "node": "23.7.0",
+            "platform": "Windows-10-10.0.26100-SP0",
+            "python": "3.11.2"
+        }
+    }
+}

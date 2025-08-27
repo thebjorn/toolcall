@@ -1,25 +1,23 @@
+<!DOCTYPE html>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="../../../">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>toolcall.toolimplementor.views &#8212; toolcall 2.0.1 documentation</title>
-    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../../_static/documentation_options.js?v=f5cff4aa"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
    
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -27,22 +25,24 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <h1>Source code for toolcall.toolimplementor.views</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">django</span> <span class="k">import</span> <span class="n">http</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">http</span>
 
 <span class="c1"># (http://localhost:8000/.api/toolcall/v2/) api.urls.root-url</span>
-<span class="kn">from</span> <span class="nn">django.contrib.auth</span> <span class="k">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
-<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="k">import</span> <span class="n">User</span>
-<span class="kn">import</span> <span class="nn">dkredis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">authenticate</span><span class="p">,</span> <span class="n">login</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dkredis</span>
 
-<span class="kn">import</span> <span class="nn">toolcall</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">toolcall</span>
 
 <span class="n">SERVER_ROOT_URL</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8000/&quot;</span>
 
@@ -53,7 +53,9 @@
 <span class="n">RESULT_TOKEN_URL</span> <span class="o">=</span> <span class="s1">&#39;result/&#39;</span>
 
 
-<div class="viewcode-block" id="receive_start_token"><a class="viewcode-back" href="../../../toolcall.toolimplementor.html#toolcall.toolimplementor.views.receive_start_token">[docs]</a><span class="k">def</span> <span class="nf">receive_start_token</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<div class="viewcode-block" id="receive_start_token">
+<a class="viewcode-back" href="../../../toolcall.toolimplementor.html#toolcall.toolimplementor.views.receive_start_token">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">receive_start_token</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">REQUEST</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
     <span class="c1"># check if token has been seen before..?</span>
     <span class="n">url</span> <span class="o">=</span> <span class="n">SERVER_ROOT_URL</span> <span class="o">+</span> <span class="n">START_DATA_URL</span> <span class="o">+</span> <span class="s1">&#39;?access_token=&#39;</span> <span class="o">+</span> <span class="n">token</span>
@@ -94,7 +96,10 @@
     <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s1">&#39;/client/start-exam/my-tool/&#39;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="run_my_tool"><a class="viewcode-back" href="../../../toolcall.toolimplementor.html#toolcall.toolimplementor.views.run_my_tool">[docs]</a><span class="k">def</span> <span class="nf">run_my_tool</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+
+<div class="viewcode-block" id="run_my_tool">
+<a class="viewcode-back" href="../../../toolcall.toolimplementor.html#toolcall.toolimplementor.views.run_my_tool">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_my_tool</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="c1"># run exam..</span>
     <span class="c1"># using a random value here to demonstrate that this token is</span>
     <span class="c1"># generated on the client</span>
@@ -122,25 +127,45 @@
     <span class="n">url</span> <span class="o">=</span> <span class="n">SERVER_ROOT_URL</span> <span class="o">+</span> <span class="n">RESULT_TOKEN_URL</span>
     <span class="n">url</span> <span class="o">+=</span> <span class="s1">&#39;?access_token=&#39;</span> <span class="o">+</span> <span class="n">token</span>
     <span class="n">url</span> <span class="o">+=</span> <span class="s1">&#39;&amp;client=testclient&#39;</span>  <span class="c1"># must match Client.name</span>
-    <span class="nb">print</span> <span class="s2">&quot;REDIRECTING TO: &quot;</span><span class="p">,</span> <span class="n">url</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;REDIRECTING TO: &quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="send_result_data"><a class="viewcode-back" href="../../../toolcall.toolimplementor.html#toolcall.toolimplementor.views.send_result_data">[docs]</a><span class="k">def</span> <span class="nf">send_result_data</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="nb">print</span> <span class="s2">&quot;in send-result-data:&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span>
+
+<div class="viewcode-block" id="send_result_data">
+<a class="viewcode-back" href="../../../toolcall.toolimplementor.html#toolcall.toolimplementor.views.send_result_data">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">send_result_data</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;in send-result-data:&quot;</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">dkredis</span><span class="o">.</span><span class="n">pop_pyval</span><span class="p">(</span><span class="s2">&quot;CLIENT-TOKEN-&quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">])</span>
-    <span class="nb">print</span> <span class="s2">&quot;CLIENT_RESULT:&quot;</span><span class="p">,</span> <span class="n">result</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CLIENT_RESULT:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">toolcall</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">SuccessResponse</span><span class="p">(</span>
         <span class="n">result</span>
     <span class="p">)</span></div>
+
 </pre></div>
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">toolcall</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../toolcall.html">toolcall package</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../../../index.html">Documentation overview</a><ul>
@@ -150,27 +175,33 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 Bjorn Pettersen.
+      &#169;2018 Bjorn Pettersen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 

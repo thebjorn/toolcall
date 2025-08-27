@@ -1,26 +1,23 @@
+<!DOCTYPE html>
 
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="./">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index &#8212; toolcall 2.0.1 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f5cff4aa"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -28,6 +25,8 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
 
@@ -43,10 +42,12 @@
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -57,10 +58,6 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.views.api_definition">api_definition() (in module toolcall.views)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.auth_backend.DKSSOBlindTrustAuthenticator.authenticate">authenticate() (toolcall.auth_backend.DKSSOBlindTrustAuthenticator method)</a>
 </li>
   </ul></td>
@@ -69,15 +66,27 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.admin.ClientAdmin">ClientAdmin (class in toolcall.admin)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client">Client (class in toolcall.models.tool_models)</a>
 </li>
-      <li><a href="toolcall.html#toolcall.jsondecoder.ISO8601Decoder.convert">convert() (toolcall.jsondecoder.ISO8601Decoder method)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.client">client (toolcall.models.tool_models.Tool attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.DoesNotExist">Client.DoesNotExist</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.MultipleObjectsReturned">Client.MultipleObjectsReturned</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.client_id">client_id (toolcall.models.tool_models.Tool attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.dktoken.Token.create_new_token">create_new_token() (toolcall.dktoken.Token method)</a>
+      <li><a href="toolcall.html#toolcall.admin.ClientAdmin">ClientAdmin (class in toolcall.admin)</a>
 </li>
-      <li><a href="toolcall.html#toolcall.views.create_token">create_token() (in module toolcall.views)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.close">close() (toolcall.models.tool_models.ToolCall method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.close_open_attempts">close_open_attempts() (toolcall.models.tool_models.ToolCall class method)</a>
+</li>
+      <li><a href="toolcall.html#toolcall.jsondecoder.ISO8601Decoder.convert">convert() (toolcall.jsondecoder.ISO8601Decoder method)</a>
+</li>
+      <li><a href="toolcall.html#toolcall.dktoken.Token.create_new_token">create_new_token() (toolcall.dktoken.Token method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -87,7 +96,9 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.jason.DkJSONEncoder.default">default() (toolcall.jason.DkJSONEncoder method)</a>
 </li>
-      <li><a href="toolcall.html#toolcall.apiutils.dk_token">dk_token() (in module toolcall.apiutils)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.description">description (toolcall.models.tool_models.Tool attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.details">details (toolcall.models.tool_models.ToolCallLog attribute)</a>
 </li>
       <li><a href="toolcall.html#toolcall.dkhttp.DkHttpError">DkHttpError</a>
 </li>
@@ -107,6 +118,14 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.ended">ended (toolcall.models.tool_models.ToolCall attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.exam">exam (toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.exam_type">exam_type (toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
       <li><a href="toolcall.html#toolcall.admin.ToolCallLogAdmin.extra">extra (toolcall.admin.ToolCallLogAdmin attribute)</a>
 
       <ul>
@@ -125,14 +144,14 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.views.fetch_token">fetch_token() (in module toolcall.views)</a>
-</li>
       <li><a href="toolcall.html#toolcall.admin.ToolCallLogAdmin.fields">fields (toolcall.admin.ToolCallLogAdmin attribute)</a>
 
       <ul>
         <li><a href="toolcall.html#toolcall.admin.ToolInlineAdmin.fields">(toolcall.admin.ToolInlineAdmin attribute)</a>
 </li>
       </ul></li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.finished_ok">finished_ok() (toolcall.models.tool_models.ToolCall method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -141,14 +160,26 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.tooluser.html#toolcall.tooluser.views.generate_unique_id">generate_unique_id() (in module toolcall.tooluser.views)</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.get">get() (toolcall.models.tool_models.ToolCall class method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.get_next_by_timestamp">get_next_by_timestamp() (toolcall.models.tool_models.ToolCallLog method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.get_next_by_tstamp">get_next_by_tstamp() (toolcall.models.tool_models.ToolcallResult method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.get_previous_by_timestamp">get_previous_by_timestamp() (toolcall.models.tool_models.ToolCallLog method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.get_previous_by_tstamp">get_previous_by_tstamp() (toolcall.models.tool_models.ToolcallResult method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.get_status_display">get_status_display() (toolcall.models.tool_models.ToolCall method)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.views.home">home() (in module toolcall.views)</a>
-</li>
       <li><a href="toolcall.html#toolcall.dkhttp.HttpAccepted">HttpAccepted (class in toolcall.dkhttp)</a>
 </li>
       <li><a href="toolcall.html#toolcall.dkhttp.HttpApplicationError">HttpApplicationError (class in toolcall.dkhttp)</a>
@@ -163,10 +194,10 @@
 </li>
       <li><a href="toolcall.html#toolcall.dkhttp.HttpMethodNotAllowed">HttpMethodNotAllowed (class in toolcall.dkhttp)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.dkhttp.HttpMultipleChoices">HttpMultipleChoices (class in toolcall.dkhttp)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.dkhttp.HttpNoContent">HttpNoContent (class in toolcall.dkhttp)</a>
 </li>
       <li><a href="toolcall.html#toolcall.dkhttp.HttpNotFound">HttpNotFound (class in toolcall.dkhttp)</a>
@@ -189,6 +220,22 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.icon">icon (toolcall.models.tool_models.Tool attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.id">id (toolcall.models.tool_models.Client attribute)</a>
+
+      <ul>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.id">(toolcall.models.tool_models.Tool attribute)</a>
+</li>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.id">(toolcall.models.tool_models.ToolCall attribute)</a>
+</li>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.id">(toolcall.models.tool_models.ToolCallLog attribute)</a>
+</li>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.id">(toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.dkhttp.ImmediateHttpResponse">ImmediateHttpResponse</a>
 </li>
       <li><a href="toolcall.html#toolcall.admin.ClientAdmin.inlines">inlines (toolcall.admin.ClientAdmin attribute)</a>
@@ -197,8 +244,6 @@
         <li><a href="toolcall.html#toolcall.admin.ToolCallAdmin.inlines">(toolcall.admin.ToolCallAdmin attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.dktoken.Token.inspect">inspect() (toolcall.dktoken.Token static method)</a>
 </li>
       <li><a href="toolcall.html#toolcall.jsondecoder.ISO8601Decoder">ISO8601Decoder (class in toolcall.jsondecoder)</a>
@@ -222,6 +267,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.kind">kind (toolcall.models.tool_models.ToolcallResult property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -231,6 +284,8 @@
         <li><a href="toolcall.html#toolcall.admin.ToolCallAdmin.list_display">(toolcall.admin.ToolCallAdmin attribute)</a>
 </li>
       </ul></li>
+      <li><a href="toolcall.tooluser.html#toolcall.tooluser.views.list_tools">list_tools() (in module toolcall.tooluser.views)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.jason.loads">loads() (in module toolcall.jason)</a>
@@ -239,32 +294,85 @@
         <li><a href="toolcall.html#toolcall.jsondecoder.loads">(in module toolcall.jsondecoder)</a>
 </li>
       </ul></li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.logs">logs (toolcall.models.tool_models.ToolCall attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.make_client_admin">make_client_admin() (toolcall.models.tool_models.Client class method)</a>
+</li>
       <li><a href="toolcall.html#toolcall.jsondecoder.ISO8601Decoder.MAYBE_DATE">MAYBE_DATE (toolcall.jsondecoder.ISO8601Decoder attribute)</a>
 </li>
-      <li><a href="toolcall.html#toolcall.admin.ClientAdmin.media">media (toolcall.admin.ClientAdmin attribute)</a>
+      <li><a href="toolcall.html#toolcall.admin.ClientAdmin.media">media (toolcall.admin.ClientAdmin property)</a>
 
       <ul>
-        <li><a href="toolcall.html#toolcall.admin.ToolCallAdmin.media">(toolcall.admin.ToolCallAdmin attribute)</a>
+        <li><a href="toolcall.html#toolcall.admin.ToolCallAdmin.media">(toolcall.admin.ToolCallAdmin property)</a>
 </li>
-        <li><a href="toolcall.html#toolcall.admin.ToolCallLogAdmin.media">(toolcall.admin.ToolCallLogAdmin attribute)</a>
+        <li><a href="toolcall.html#toolcall.admin.ToolCallLogAdmin.media">(toolcall.admin.ToolCallLogAdmin property)</a>
 </li>
-        <li><a href="toolcall.html#toolcall.admin.ToolInlineAdmin.media">(toolcall.admin.ToolInlineAdmin attribute)</a>
+        <li><a href="toolcall.html#toolcall.admin.ToolInlineAdmin.media">(toolcall.admin.ToolInlineAdmin property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.message.Message">Message (class in toolcall.message)</a>
 </li>
       <li><a href="toolcall.html#toolcall.admin.ToolCallLogAdmin.model">model (toolcall.admin.ToolCallLogAdmin attribute)</a>
 
       <ul>
         <li><a href="toolcall.html#toolcall.admin.ToolInlineAdmin.model">(toolcall.admin.ToolInlineAdmin attribute)</a>
+</li>
+      </ul></li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall">toolcall</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.admin">toolcall.admin</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.apps">toolcall.apps</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.auth_backend">toolcall.auth_backend</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.defaults">toolcall.defaults</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.dkhttp">toolcall.dkhttp</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.dktoken">toolcall.dktoken</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.jason">toolcall.jason</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.jsondecoder">toolcall.jsondecoder</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.message">toolcall.message</a>
+</li>
+        <li><a href="toolcall.models.html#module-toolcall.models">toolcall.models</a>
+</li>
+        <li><a href="toolcall.models.html#module-toolcall.models.legal_transitions">toolcall.models.legal_transitions</a>
+</li>
+        <li><a href="toolcall.models.html#module-toolcall.models.tool_models">toolcall.models.tool_models</a>
+</li>
+        <li><a href="toolcall.templatetags.html#module-toolcall.templatetags">toolcall.templatetags</a>
+</li>
+        <li><a href="toolcall.templatetags.html#module-toolcall.templatetags.toolcall_tags">toolcall.templatetags.toolcall_tags</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.toolcall_exceptions">toolcall.toolcall_exceptions</a>
+</li>
+        <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor">toolcall.toolimplementor</a>
+</li>
+        <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.urls">toolcall.toolimplementor.urls</a>
+</li>
+        <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.views">toolcall.toolimplementor.views</a>
+</li>
+        <li><a href="toolcall.html#module-toolcall.toolresult">toolcall.toolresult</a>
+</li>
+        <li><a href="toolcall.tooluser.html#module-toolcall.tooluser">toolcall.tooluser</a>
+</li>
+        <li><a href="toolcall.tooluser.html#module-toolcall.tooluser.urls">toolcall.tooluser.urls</a>
+</li>
+        <li><a href="toolcall.tooluser.html#module-toolcall.tooluser.views">toolcall.tooluser.views</a>
 </li>
       </ul></li>
   </ul></td>
@@ -274,7 +382,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.apps.Toolcall.name">name (toolcall.apps.Toolcall attribute)</a>
+
+      <ul>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.name">(toolcall.models.tool_models.Client attribute)</a>
 </li>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.name">(toolcall.models.tool_models.Tool attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -283,6 +397,18 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.jason.obj_decoder">obj_decoder() (in module toolcall.jason)</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.objects">objects (toolcall.models.tool_models.Client attribute)</a>
+
+      <ul>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.objects">(toolcall.models.tool_models.Tool attribute)</a>
+</li>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.objects">(toolcall.models.tool_models.ToolCall attribute)</a>
+</li>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.objects">(toolcall.models.tool_models.ToolCallLog attribute)</a>
+</li>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.objects">(toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.jsondecoder.ISO8601Decoder.objhook">objhook() (toolcall.jsondecoder.ISO8601Decoder method)</a>
@@ -290,20 +416,36 @@
   </ul></td>
 </tr></table>
 
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.passed">passed (toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.apiutils.raw_token_from_request">raw_token_from_request() (in module toolcall.apiutils)</a>
+      <li><a href="toolcall.html#toolcall.admin.ToolCallAdmin.raw_id_fields">raw_id_fields (toolcall.admin.ToolCallAdmin attribute)</a>
 </li>
-      <li><a href="toolcall.html#toolcall.views.receive_result">receive_result() (in module toolcall.views)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.receive_result_token_url">receive_result_token_url (toolcall.models.tool_models.Client attribute)</a>
 </li>
       <li><a href="toolcall.toolimplementor.html#toolcall.toolimplementor.views.receive_start_token">receive_start_token() (in module toolcall.toolimplementor.views)</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.receive_start_token_url">receive_start_token_url (toolcall.models.tool_models.Client attribute)</a>
+</li>
+      <li><a href="toolcall.html#toolcall.dkhttp.ImmediateHttpResponse.response">response (toolcall.dkhttp.ImmediateHttpResponse property)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.dkhttp.ImmediateHttpResponse.response">response (toolcall.dkhttp.ImmediateHttpResponse attribute)</a>
-</li>
       <li><a href="toolcall.html#toolcall.jason.response">response() (in module toolcall.jason)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.restart_duration_minutes">restart_duration_minutes (toolcall.models.tool_models.Tool attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.restartable">restartable (toolcall.models.tool_models.Tool attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.result">result() (toolcall.models.tool_models.ToolcallResult method)</a>
 </li>
       <li><a href="toolcall.toolimplementor.html#toolcall.toolimplementor.views.run_my_tool">run_my_tool() (in module toolcall.toolimplementor.views)</a>
 </li>
@@ -313,12 +455,38 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.save">save() (toolcall.models.tool_models.ToolCall method)</a>
+
+      <ul>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.save">(toolcall.models.tool_models.ToolcallResult method)</a>
+</li>
+      </ul></li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.score">score (toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
       <li><a href="toolcall.toolimplementor.html#toolcall.toolimplementor.views.send_result_data">send_result_data() (in module toolcall.toolimplementor.views)</a>
 </li>
       <li><a href="toolcall.html#toolcall.message.ServerError">ServerError() (in module toolcall.message)</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.set_status">set_status() (toolcall.models.tool_models.ToolCall method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.sign">sign() (toolcall.models.tool_models.ToolCall method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.slug">slug (toolcall.models.tool_models.Tool attribute)</a>
+</li>
       <li><a href="toolcall.tooluser.html#toolcall.tooluser.views.start_tool">start_tool() (in module toolcall.tooluser.views)</a>
 </li>
+      <li><a href="toolcall.tooluser.html#toolcall.tooluser.views.start_tool_redirect">start_tool_redirect() (in module toolcall.tooluser.views)</a>
+</li>
+      <li><a href="toolcall.templatetags.html#toolcall.templatetags.toolcall_tags.start_toolcall">start_toolcall() (in module toolcall.templatetags.toolcall_tags)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.started">started (toolcall.models.tool_models.ToolCall attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.status">status (toolcall.models.tool_models.ToolCall attribute)</a>
+
+      <ul>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.status">(toolcall.models.tool_models.ToolCallLog attribute)</a>
+</li>
+      </ul></li>
       <li><a href="toolcall.html#toolcall.dkhttp.HttpAccepted.status_code">status_code (toolcall.dkhttp.HttpAccepted attribute)</a>
 
       <ul>
@@ -355,7 +523,11 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.store">store() (toolcall.models.tool_models.ToolcallResult class method)</a>
+</li>
       <li><a href="toolcall.html#toolcall.message.SuccessResponse">SuccessResponse() (in module toolcall.message)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.system">system (toolcall.models.tool_models.ToolcallResult attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -363,59 +535,206 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.timed_out">timed_out() (toolcall.models.tool_models.ToolCall method)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.timestamp">timestamp (toolcall.models.tool_models.ToolCallLog attribute)</a>
+</li>
       <li><a href="toolcall.html#toolcall.dktoken.Token">Token (class in toolcall.dktoken)</a>
 </li>
       <li><a href="toolcall.html#toolcall.dktoken.Token.Invalid">Token.Invalid</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool">Tool (class in toolcall.models.tool_models)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.tool">tool (toolcall.models.tool_models.ToolCall attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.DoesNotExist">Tool.DoesNotExist</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.MultipleObjectsReturned">Tool.MultipleObjectsReturned</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.tool_id">tool_id (toolcall.models.tool_models.ToolCall attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Client.tool_set">tool_set (toolcall.models.tool_models.Client attribute)</a>
+</li>
+      <li>
+    toolcall
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall">module</a>
+</li>
+      </ul></li>
       <li><a href="toolcall.html#toolcall.apps.Toolcall">Toolcall (class in toolcall.apps)</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall">toolcall (module)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall">ToolCall (class in toolcall.models.tool_models)</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.admin">toolcall.admin (module)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.toolcall">toolcall (toolcall.models.tool_models.ToolCallLog attribute)</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.api">toolcall.api (module)</a>
+      <li>
+    toolcall.admin
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.admin">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.apiutils">toolcall.apiutils (module)</a>
+      </ul></li>
+      <li>
+    toolcall.apps
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.apps">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.apps">toolcall.apps (module)</a>
+      </ul></li>
+      <li>
+    toolcall.auth_backend
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.auth_backend">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.auth_backend">toolcall.auth_backend (module)</a>
+      </ul></li>
+      <li>
+    toolcall.defaults
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.defaults">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.defaults">toolcall.defaults (module)</a>
+      </ul></li>
+      <li>
+    toolcall.dkhttp
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.dkhttp">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.dkhttp">toolcall.dkhttp (module)</a>
+      </ul></li>
+      <li>
+    toolcall.dktoken
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.dktoken">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.dktoken">toolcall.dktoken (module)</a>
+      </ul></li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.DoesNotExist">ToolCall.DoesNotExist</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.jason">toolcall.jason (module)</a>
+      <li>
+    toolcall.jason
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.jason">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.jsondecoder">toolcall.jsondecoder (module)</a>
+      </ul></li>
+      <li>
+    toolcall.jsondecoder
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.jsondecoder">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.message">toolcall.message (module)</a>
+      </ul></li>
+      <li>
+    toolcall.message
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.message">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.toolcall_exceptions">toolcall.toolcall_exceptions (module)</a>
+      </ul></li>
+      <li>
+    toolcall.models
+
+      <ul>
+        <li><a href="toolcall.models.html#module-toolcall.models">module</a>
 </li>
-      <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor">toolcall.toolimplementor (module)</a>
+      </ul></li>
+      <li>
+    toolcall.models.legal_transitions
+
+      <ul>
+        <li><a href="toolcall.models.html#module-toolcall.models.legal_transitions">module</a>
 </li>
+      </ul></li>
+      <li>
+    toolcall.models.tool_models
+
+      <ul>
+        <li><a href="toolcall.models.html#module-toolcall.models.tool_models">module</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.urls">toolcall.toolimplementor.urls (module)</a>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.MultipleObjectsReturned">ToolCall.MultipleObjectsReturned</a>
 </li>
-      <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.views">toolcall.toolimplementor.views (module)</a>
+      <li>
+    toolcall.templatetags
+
+      <ul>
+        <li><a href="toolcall.templatetags.html#module-toolcall.templatetags">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.toolresult">toolcall.toolresult (module)</a>
+      </ul></li>
+      <li>
+    toolcall.templatetags.toolcall_tags
+
+      <ul>
+        <li><a href="toolcall.templatetags.html#module-toolcall.templatetags.toolcall_tags">module</a>
 </li>
-      <li><a href="toolcall.tooluser.html#module-toolcall.tooluser">toolcall.tooluser (module)</a>
+      </ul></li>
+      <li>
+    toolcall.toolcall_exceptions
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.toolcall_exceptions">module</a>
 </li>
-      <li><a href="toolcall.tooluser.html#module-toolcall.tooluser.urls">toolcall.tooluser.urls (module)</a>
+      </ul></li>
+      <li>
+    toolcall.toolimplementor
+
+      <ul>
+        <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor">module</a>
 </li>
-      <li><a href="toolcall.tooluser.html#module-toolcall.tooluser.views">toolcall.tooluser.views (module)</a>
+      </ul></li>
+      <li>
+    toolcall.toolimplementor.urls
+
+      <ul>
+        <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.urls">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.urls">toolcall.urls (module)</a>
+      </ul></li>
+      <li>
+    toolcall.toolimplementor.views
+
+      <ul>
+        <li><a href="toolcall.toolimplementor.html#module-toolcall.toolimplementor.views">module</a>
 </li>
-      <li><a href="toolcall.html#module-toolcall.views">toolcall.views (module)</a>
+      </ul></li>
+      <li>
+    toolcall.toolresult
+
+      <ul>
+        <li><a href="toolcall.html#module-toolcall.toolresult">module</a>
 </li>
-      <li><a href="toolcall.html#toolcall.apiutils.toolcall_token">toolcall_token() (in module toolcall.apiutils)</a>
+      </ul></li>
+      <li>
+    toolcall.tooluser
+
+      <ul>
+        <li><a href="toolcall.tooluser.html#module-toolcall.tooluser">module</a>
+</li>
+      </ul></li>
+      <li>
+    toolcall.tooluser.urls
+
+      <ul>
+        <li><a href="toolcall.tooluser.html#module-toolcall.tooluser.urls">module</a>
+</li>
+      </ul></li>
+      <li>
+    toolcall.tooluser.views
+
+      <ul>
+        <li><a href="toolcall.tooluser.html#module-toolcall.tooluser.views">module</a>
+</li>
+      </ul></li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.toolcall_id">toolcall_id (toolcall.models.tool_models.ToolCallLog attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.toolcall_participant_id">toolcall_participant_id (toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.Tool.toolcall_set">toolcall_set (toolcall.models.tool_models.Tool attribute)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.toolcall_tstamp">toolcall_tstamp (toolcall.models.tool_models.ToolcallResult attribute)</a>
 </li>
       <li><a href="toolcall.html#toolcall.admin.ToolCallAdmin">ToolCallAdmin (class in toolcall.admin)</a>
 </li>
@@ -425,13 +744,27 @@
 </li>
       <li><a href="toolcall.html#toolcall.toolcall_exceptions.ToolcallJSonDecodeError">ToolcallJSonDecodeError</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog">ToolCallLog (class in toolcall.models.tool_models)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.DoesNotExist">ToolCallLog.DoesNotExist</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCallLog.MultipleObjectsReturned">ToolCallLog.MultipleObjectsReturned</a>
+</li>
       <li><a href="toolcall.html#toolcall.admin.ToolCallLogAdmin">ToolCallLogAdmin (class in toolcall.admin)</a>
 </li>
       <li><a href="toolcall.html#toolcall.toolcall_exceptions.ToolcallMessageException">ToolcallMessageException</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult">ToolcallResult (class in toolcall.models.tool_models)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.DoesNotExist">ToolcallResult.DoesNotExist</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.MultipleObjectsReturned">ToolcallResult.MultipleObjectsReturned</a>
+</li>
       <li><a href="toolcall.html#toolcall.toolcall_exceptions.ToolcallResultException">ToolcallResultException</a>
 </li>
       <li><a href="toolcall.html#toolcall.admin.ToolInlineAdmin">ToolInlineAdmin (class in toolcall.admin)</a>
+</li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.tstamp">tstamp (toolcall.models.tool_models.ToolcallResult attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -441,13 +774,27 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="toolcall.html#toolcall.message.UnautorizedResponse">UnautorizedResponse() (in module toolcall.message)</a>
 </li>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.user">user (toolcall.models.tool_models.ToolCall attribute)</a>
+
+      <ul>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.user">(toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolCall.user_id">user_id (toolcall.models.tool_models.ToolCall attribute)</a>
+
+      <ul>
+        <li><a href="toolcall.models.html#toolcall.models.tool_models.ToolcallResult.user_id">(toolcall.models.tool_models.ToolcallResult attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="toolcall.html#toolcall.dktoken.Token.valid">valid (toolcall.dktoken.Token attribute)</a>
+      <li><a href="toolcall.html#toolcall.dktoken.Token.valid">valid (toolcall.dktoken.Token property)</a>
 </li>
       <li><a href="toolcall.html#toolcall.dktoken.Token.validate">validate() (toolcall.dktoken.Token static method)</a>
 </li>
@@ -465,10 +812,26 @@
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">toolcall</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="toolcall.html">toolcall package</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
@@ -476,27 +839,33 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018 Bjorn Pettersen.
+      &#169;2018 Bjorn Pettersen.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>
 
